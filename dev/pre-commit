@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Fetch the GIT diff and format it as command input:
+DIFF=$(git -c diff.mnemonicprefix=false -c diff.noprefix=false --no-pager diff -r -p -m -M --full-index --no-color --staged | cat)
+
+# Grumphp env vars
+export GRUMPHP_GIT_WORKING_DIR="$(git rev-parse --show-toplevel)"
+# Wardens bin path
+PATH="$PATH:/opt/warden/bin"
+
+# Run GrumPHP
+(cd "./" && exec 'docker' 'compose' 'exec' 'laravel.test' 'vendor/bin/grumphp' 'run' '--tasks' 'phpstan,phpcs')

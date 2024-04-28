@@ -1,0 +1,26 @@
+grumphp:
+  process_timeout: 120
+  tasks:
+    phpcs:
+      whitelist_patterns:
+        - /^app\/(.*)/
+      triggered_by:
+        - php
+        - phtml
+      standard: ['psr12', 'phpcs_ruleset.xml']
+    phpunit:
+      config_file: phpunit.xml
+      always_execute: false
+    phpmd:
+      whitelist_patterns: {}
+      exclude: {}
+      report_format: text
+      ruleset: ['cleancode', 'codesize', 'naming']
+      triggered_by:
+        php: null
+    phpstan:
+      level: 6
+      triggered_by: ['php']
+      configuration: phpstan.neon
+      use_grumphp_paths: false
+      memory_limit: 2G
