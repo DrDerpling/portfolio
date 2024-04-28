@@ -3,4 +3,9 @@ parameters:
 		-
 			message: "#^Undefined variable\\: \\$this$#"
 			count: 1
-			path: app/Domains/BaseDomain/routes/console.php
+			path: app/Modules/Framework/routes/console.php
+
+		-
+			message: "#^PHPDoc type array\\<string\\> of property App\\\\Modules\\\\Skill\\\\Models\\\\Skill\\:\\:\\$fillable is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable\\.$#"
+			count: 1
+			path: app/Modules/Skill/Models/Skill.php
