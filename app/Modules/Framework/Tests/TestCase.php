@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\BaseDomain\Tests;
+namespace App\Modules\Framework\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
 {
     public function createApplication()
     {
-        $app = require Application::inferBasePath() . '/app/Domains/BaseDomain/app.php';
+        $app = require Application::inferBasePath() . '/app/Modules/Framework/app.php';
 
         $app->make(Kernel::class)->bootstrap();
 

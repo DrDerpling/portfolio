@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\BaseDomain\Models;
+namespace App\Modules\Framework\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

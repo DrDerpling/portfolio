@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\BaseDomain\Database\Seeders;
+namespace App\Modules\Framework\Database\Seeders;
 
-use App\Domains\BaseDomain\Models\User;
+use App\Modules\Framework\Models\User;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;

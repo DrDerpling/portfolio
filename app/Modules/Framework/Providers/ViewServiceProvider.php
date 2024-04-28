@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\BaseDomain\Providers;
+namespace App\Modules\Framework\Providers;
 
-use App\Domains\BaseDomain\Services\DomainDirectoryService;
+use App\Modules\Framework\Services\DomainDirectoryService;
 use Illuminate\View\FileViewFinder;
 use Illuminate\View\ViewServiceProvider as ServiceProvider;
 

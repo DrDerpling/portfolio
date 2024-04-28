@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\BaseDomain\Services;
+namespace App\Modules\Framework\Services;
 
-use App\Domains\BaseDomain\Exceptions\AppDomainNotFound;
+use App\Modules\Framework\Exceptions\ModulesNotFound;
 use Exception;
 use InvalidArgumentException;
 
 class DomainDirectoryService
 {
-    public const DOMAIN_PATH = 'app/Domains/';
+    public const DOMAIN_PATH = 'app/Modules/';
 
     /**
      * returns an array of domain paths if the domains directory exists
      *
      * @return array|null
-     * @throws AppDomainNotFound
+     * @throws ModulesNotFound
      * @throws InvalidArgumentException
      */
     public function listDomainPaths(): ?array
@@ -24,7 +24,7 @@ class DomainDirectoryService
         $baseDomainPath = base_path(self::DOMAIN_PATH);
 
         if (!file_exists($baseDomainPath)) {
-            throw new AppDomainNotFound('app/Domains directory not found. Please create it.');
+            throw new ModulesNotFound('app/Modules directory not found. Please create it.');
         }
 
         $domains = $this->getFolderContents($baseDomainPath);

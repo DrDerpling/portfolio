@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\BaseDomain\Tests\Unit;
+namespace App\Modules\Framework\Tests\Unit;
 
-use App\Domains\BaseDomain\Tests\TestCase;
+use App\Modules\Framework\Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
