@@ -9,4 +9,4 @@ export GRUMPHP_GIT_WORKING_DIR="$(git rev-parse --show-toplevel)"
 PATH="$PATH:/opt/warden/bin"
 
 # Run GrumPHP
-(cd "./" && exec 'docker' 'compose' 'exec' 'laravel.test' 'vendor/bin/grumphp' 'run' '--tasks' 'phpstan,phpcs')
+(cd "./" && exec 'warden' 'env' 'exec' 'php-fpm' 'vendor/bin/grumphp' 'run' '--tasks' 'phpstan,phpcs')

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Modules\CMSIntegration\Services;
 
 use Exception;
-use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
@@ -14,7 +13,7 @@ use JsonException;
 
 class DirectusApi
 {
-    public function __construct(private Client $authenticatedClient)
+    public function __construct()
     {
     }
 
@@ -26,7 +25,11 @@ class DirectusApi
     {
         $response = $this->get("items/$collection", $query)->json();
 
+
         if (isset($response['errors'])) {
+            /**
+             * @var array{message:string} $firstError
+             */
             $firstError = Arr::first($response['errors']);
 
             throw new Exception($firstError['message']);

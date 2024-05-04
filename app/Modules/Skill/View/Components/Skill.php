@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Modules\Skill\View\Components;
 
 use App\Modules\Skill\Models\Skill as SkillModel;
