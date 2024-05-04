@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\Framework;
+namespace App\Modules\Framework;
 
 use Illuminate\Support\Arr;
 use JsonSerializable;

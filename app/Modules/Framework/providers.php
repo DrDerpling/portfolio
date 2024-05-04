@@ -6,4 +6,5 @@ return [
     \App\Modules\Framework\Providers\AppServiceProvider::class,
     \App\Modules\Framework\Providers\ViewServiceProvider::class,
     \App\Modules\Framework\Providers\MigrationServiceProvider::class,
+    \App\Modules\Skill\Providers\SkillProvider::class,
 ];

@@ -6,6 +6,14 @@ namespace App\Modules\Skill\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Skill
+ * @package App\Modules\Skill\Models
+ * @property string $name
+ * @property string $logo
+ * @property int $proficiency
+ * @property int $cms_id
+ */
 class Skill extends Model
 {
     /**

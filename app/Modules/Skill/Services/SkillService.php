@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Modules\Skill\Services;
 
-use App\Domains\CMSIntegration\Services\DirectusApi;
+use App\Modules\CMSIntegration\Services\DirectusApi;
 use App\Modules\Skill\DataObjects\SkillDataObject;
 use App\Modules\Skill\Models\Skill;
 use App\Modules\Skill\Repositories\SkillRepository;
+use GuzzleHttp\Exception\GuzzleException;
 
 class SkillService
 {
@@ -18,7 +19,10 @@ class SkillService
     }
 
     /**
+     * @param bool $forceNew
      * @return Skill[]
+     * @throws GuzzleException
+     * @throws \JsonException
      */
     public function getSkills(bool $forceNew = false): array
     {
@@ -32,7 +36,10 @@ class SkillService
             return $this->getFromDirectus();
         }
 
-        return $items->toArray();
+        /** @var Skill[] $result */
+        $result = $items->all();
+
+        return $result;
     }
 
     /**
@@ -63,6 +70,8 @@ class SkillService
 
     /**
      * @return Skill[]
+     * @throws GuzzleException
+     * @throws \JsonException
      */
     private function getFromDirectus(): array
     {
