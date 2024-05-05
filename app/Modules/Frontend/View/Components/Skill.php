@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Skill\View\Components;
+namespace App\Modules\Frontend\View\Components;
 
 use App\Modules\Skill\Models\Skill as SkillModel;
 use Closure;
@@ -23,6 +23,6 @@ class Skill extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.skill');
+        return view('components.modules.skill.skill');
     }
 }
