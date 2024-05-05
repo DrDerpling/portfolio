@@ -17,7 +17,7 @@ Route::get('/components', function () {
     return view('pages.components', compact('skills'));
 })->name('components');
 
-Route::get('/skills' , function () {
+Route::get('/skills', function () {
     /** @var SkillService $skillService */
     $skillService = app()->make(SkillService::class);
     $skills = $skillService->getSkills();
