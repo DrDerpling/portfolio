@@ -12,7 +12,7 @@ Route::get('/', function () {
 Route::get('/components', function () {
     /** @var SkillService $skillService */
     $skillService = app()->make(SkillService::class);
-    $skills = $skillService->getSkills();
+    $skills = $skillService->getSkills(true);
 
     return view('pages.components', compact('skills'));
 })->name('components');
@@ -20,7 +20,7 @@ Route::get('/components', function () {
 Route::get('/skills', function () {
     /** @var SkillService $skillService */
     $skillService = app()->make(SkillService::class);
-    $skills = $skillService->getSkills();
+    $skills = $skillService->getSkills(true);
 
     return view('skill.pages.skills', compact('skills'));
 })->name('skills');

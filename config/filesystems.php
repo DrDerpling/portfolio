@@ -44,6 +44,12 @@ return [
             'throw' => false,
         ],
 
+        'featericons' => [
+            'driver' => 'local',
+            'root' => app_path('Modules/FeatherIcons/resources/icons'),
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

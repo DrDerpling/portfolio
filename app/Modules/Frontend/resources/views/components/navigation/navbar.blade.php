@@ -1,18 +1,9 @@
-<nav>
-    <ul>
+@php
+    /** @var \App\Modules\Frontend\DataObjects\NavigationLink[] $links */
+@endphp
 
-        <li>
-            <a href="#">Dennis portfolio</a>
-            <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('skills') }}">Skills</a>
-            <a href="{{ route('about-me') }}">About me</a>
-        </li>
-
-        @if($devMode)
-            <li>
-                <a href="#">Dev pages</a>
-                <a href="{{ route('components') }}">Components</a>
-            </li>
-        @endif
-    </ul>
-</nav>
+<aside class="bg-dark-navy text-cool-gray-500 py-4 pl-4 pr-6">
+    @foreach($links as $link)
+        <x-item :link="$link"/>
+    @endforeach
+</aside>
