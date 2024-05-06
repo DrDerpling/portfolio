@@ -6,7 +6,7 @@
 @endphp
 
 <aside class="bg-dark-navy text-cool-gray-500 {{ $hiddenClass }}">
-    <div class="flex items-center justify-center h-16 bg-charcoal">
+    <div class="flex items-center justify-center h-16 bg-charcoal px-4 py-1">
 
     </div>
     <div class="py-4 pl-4 pr-6">

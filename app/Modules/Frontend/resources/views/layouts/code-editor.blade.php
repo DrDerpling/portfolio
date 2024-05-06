@@ -11,8 +11,9 @@
         <div class="flex bg-deep-gray text-white lg:h-screen">
             <x-navbar></x-navbar>
             <div class="flex flex-col flex-1 h-screen">
-                <div class="flex items-center justify-between h-16 min-h-16 bg-charcoal">
-
+                <div class="flex items-start justify-center flex-col h-16 min-h-16 bg-charcoal">
+                    <strong>Dennis Lindeboom</strong>
+                    <em class="text-xs text-cool-gray-500">Backend Developer</em>
                 </div>
                 <div class="flex parent-container h-screen overflow-y-auto">
                    <x-line-numbers line-height="25" height="90" />
