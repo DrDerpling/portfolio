@@ -7,17 +7,21 @@
 
         @vite('app/Modules/Frontend/resources/css/app.css')
     </head>
-    <body class="m-0 h-screen">
-        <div class="flex h-full bg-deep-gray text-white">
+    <body class="w-full">
+        <div class="flex bg-deep-gray text-white lg:h-screen">
             <x-navbar></x-navbar>
-            <div class="line-numbers p-4 flex flex-col text-slate">
-                <!-- Line numbers will be generated here -->
+            <div class="flex flex-col flex-1 h-screen">
+                <div class="flex items-center justify-between h-16 min-h-16 bg-charcoal">
+
+                </div>
+                <div class="flex parent-container h-screen overflow-y-auto">
+                   <x-line-numbers line-height="25" height="90" />
+                   <div class="p-4 ml-8 container">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
 
-            <!-- Page Content -->
-            <div class="px-4">
-                @yield('content')
-            </div>
         </div>
         @vite('app/Modules/Frontend/resources/js/app.js')
         @yield('scripts')

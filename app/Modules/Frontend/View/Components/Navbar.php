@@ -19,7 +19,7 @@ class Navbar extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public bool $forceVisible = false)
     {
         $this->devMode = App::environment('local');
     }
@@ -30,6 +30,7 @@ class Navbar extends Component
         return view('components.navigation.navbar', [
             'devMode' => $this->devMode,
             'links' => $this->getNavLinks(),
+            'forceVisible' => $this->forceVisible,
         ]);
     }
 
