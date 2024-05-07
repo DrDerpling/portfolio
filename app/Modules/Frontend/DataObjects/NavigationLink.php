@@ -30,7 +30,7 @@ class NavigationLink extends AbstractDataObject
 
     public function getChildren(): array
     {
-        return (array)$this->get('children');
+        return $this->get('children');
     }
 
     public function hasChildren(): bool

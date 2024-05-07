@@ -8,7 +8,7 @@ use App\Modules\Frontend\DataObjects\NavigationLink;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Item extends Component
+class LinkItem extends Component
 {
     /**
      * Create a new component instance.
@@ -20,6 +20,6 @@ class Item extends Component
 
     public function render(): View
     {
-        return view('components.navigation.item');
+        return view('components.navigation.link-item');
     }
 }

@@ -6,10 +6,14 @@ namespace App\Modules\Framework;
 
 use Illuminate\Support\Arr;
 use JsonSerializable;
+use Livewire\Wireable;
 
 use function json_encode;
 
-abstract class AbstractDataObject implements JsonSerializable
+/**
+ * @phpstan-consistent-constructor
+ */
+abstract class AbstractDataObject implements JsonSerializable, Wireable
 {
     public function __construct(
         private array $data = []
@@ -56,5 +60,22 @@ abstract class AbstractDataObject implements JsonSerializable
     public function jsonSerialize(): array
     {
         return $this->toArray();
+    }
+
+    /**
+     * @return array
+     */
+    public function toLivewire(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @param array $value
+     * @return static
+     */
+    public static function fromLivewire($value): static
+    {
+        return new static($value);
     }
 }

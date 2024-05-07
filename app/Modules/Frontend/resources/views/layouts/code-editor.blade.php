@@ -6,14 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         @vite('app/Modules/Frontend/resources/css/app.css')
+        @livewireStyles
     </head>
     <body class="w-full">
         <div class="flex bg-deep-gray text-white lg:h-screen">
             <x-navbar></x-navbar>
             <div class="flex flex-col flex-1 h-screen">
                 <div class="flex items-start justify-center flex-col h-16 min-h-16 bg-charcoal">
-                    <strong>Dennis Lindeboom</strong>
-                    <em class="text-xs text-cool-gray-500">Backend Developer</em>
+
                 </div>
                 <div class="flex parent-container h-screen overflow-y-auto">
                    <x-line-numbers line-height="25" height="90" />
@@ -25,6 +25,6 @@
 
         </div>
         @vite('app/Modules/Frontend/resources/js/app.js')
-        @yield('scripts')
+        @livewireScripts
     </body>
 </html>
