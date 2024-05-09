@@ -12,6 +12,7 @@ class LinkGroup extends Component
 {
     public LinkGroupModel $linkGroup;
     public bool $open = true;
+    public bool $active = false;
 
     public function render(): View
     {
@@ -21,6 +22,7 @@ class LinkGroup extends Component
     public function mount(LinkGroupModel $linkGroup, bool $open = true): void
     {
         $this->linkGroup = $linkGroup;
+        $this->active = $linkGroup->hasActiveChildren();
         $this->open = $open;
     }
 }

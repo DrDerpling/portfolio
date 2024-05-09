@@ -40,7 +40,13 @@ class NavigationRepository
 
     public function getByUrl(string $url): ?LinkItemModel
     {
-        $path = parse_url($url, PHP_URL_PATH) ?? '';
+        $path = parse_url($url, PHP_URL_PATH);
+
+        if ($path === null) {
+            $path = 'home';
+        }
+
+        $path = ltrim($path, '/');
 
         return $this->getBySlug($path);
     }

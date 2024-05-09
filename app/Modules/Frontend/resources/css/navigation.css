@@ -1,0 +1,52 @@
+/* General settings for the link item container, ensuring border is always visible */
+.link-item-container {
+    transition: background-color 0.05s ease-in-out, border-color 0.05s ease, opacity 0.05s ease-in-out; /* Smooth transition for background, border, and opacity */
+    color: var(--nav-text-inactive-color); /* Default text color for inactive links */
+    padding: 8px; /* Increased padding for larger touch area */
+}
+
+/* Hover effects for link item container */
+.link-item-container:hover {
+    background-color: var(--sidebar-bg-color); /* Background color on hover for inactive items */
+    border-color: var(--active-history-border); /* Optional: change border color on hover */
+    --button-opacity: 1; /* CSS variable to control button opacity on desktop */
+}
+
+/* Active link item styling */
+.active-link-item {
+    border-color: var(--active-history-border); /* Ensuring border is visible for active items */
+    color: var(--active-history-text-active); /* Text color for active links */
+    background-color: var(--main-bg-color);
+    border-top: 2px solid var(--active-history-border); /* Optional: add border to top of active item */
+    --button-opacity: 1; /* Ensure button is always visible for active items */
+}
+
+/* Styling for the button within the link item */
+.link-item-button {
+    opacity: var(--button-opacity, 0); /* Button is invisible initially for inactive links, controlled by CSS variable */
+    transition: opacity 0.05s ease-in-out; /* Smooth transition for opacity */
+}
+
+/* Ensure button is visible on hover or if the link item is active */
+.link-item-button:hover,
+.active-link-item .link-item-button {
+    opacity: 1; /* Button becomes fully visible on hover or if active */
+    color: var(--active-history-text-active); /* Color change on hover */
+}
+
+/* Specific class to keep the button always visible if the item is active */
+.link-item-button.active {
+    opacity: 1; /* Ensure button is always visible for active items */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .link-item-button {
+        opacity: 1; /* Always show the button on mobile devices */
+    }
+
+    .link-item-container {
+        padding: 12px; /* Larger padding for easier interaction on mobile */
+        font-size: 16px; /* Larger font size for better readability on mobile */
+    }
+}

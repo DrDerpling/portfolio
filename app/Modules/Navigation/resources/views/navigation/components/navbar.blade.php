@@ -6,10 +6,10 @@
     $hiddenClass = $forceVisible ? '' : 'hidden lg:block';
 @endphp
 
-<aside class="bg-dark-navy text-cool-gray-500 {{ $hiddenClass }}">
-    <div class="flex px-4 items-start justify-center flex-col h-16 min-h-16 bg-charcoal">
-        <strong class="text-white">Dennis Lindeboom</strong>
-        <em class="text-xs text-cool-gray-500">Backend Developer</em>
+<aside class="text-inactive-nav-text {{ $hiddenClass }}" style="background-color: var(--sidebar-bg-color);">
+    <div class="flex px-4 items-start justify-center flex-col h-16 min-h-16" style="background-color: var(--secondary-sidebar-bg-color);">
+        <strong class="text-active-nav-text">Dennis Lindeboom</strong> <!-- dynamic color for active text -->
+        <em class="text-xs" style="color: var(--nav-text-inactive-color);">Backend Developer</em> <!-- dynamic color for inactive text -->
     </div>
     <div class="py-4 pl-4 pr-6">
         @foreach($links as $link)
@@ -21,5 +21,4 @@
             <livewire:navigation.components.link-item :key="$link->getLabel()" hidden="false" :link="$link"/>
         @endforeach
     </div>
-
 </aside>

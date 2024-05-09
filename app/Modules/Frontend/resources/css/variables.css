@@ -1,0 +1,33 @@
+:root {
+    --sidebar-bg-color: theme('colors.background.dark.sidebar');
+    --main-bg-color: theme('colors.background.dark.main');
+    --secondary-sidebar-bg-color: theme('colors.background.dark.secondarySidebar');
+    --nav-text-inactive-color: theme('colors.text.dark.inactiveNav');
+    --nav-text-active-group-color: theme('colors.text.dark.activeGroupNav');
+    --nav-text-active-color: theme('colors.text.dark.activeNav');
+    --code-line-color: theme('colors.text.dark.codeLine');
+    --active-nav-text: theme('colors.text.dark.activeNav');
+    --active-history-border: theme('colors.text.dark.activeNav');
+    --active-history-text-active: theme('colors.text.dark.activeGroupNav');
+    --main-text-color: theme('colors.text.dark.main');
+    --inactive-group-nav: theme('colors.text.dark.inactiveNav');
+    --active-group-nav: theme('colors.text.dark.activeGroupNav');
+}
+
+/*:style="`color: ${open ? 'var(--inactive-group-nav)' : 'var(--active-group-nav)'}`">*/
+/* Light theme modifiers */
+.theme-light {
+    --sidebar-bg-color: theme('colors.background.light.sidebar');
+    --main-bg-color: theme('colors.background.light.main');
+    --secondary-sidebar-bg-color: theme('colors.background.light.secondarySidebar');
+    --nav-text-inactive-color: theme('colors.text.light.inactiveNav');
+    --nav-text-active-group-color: theme('colors.text.light.activeGroupNav');
+    --nav-text-active-color: theme('colors.text.light.activeNav');
+    --code-line-color: theme('colors.text.light.codeLine');
+    --active-nav-text: theme('colors.text.light.activeNav');
+    --active-history-border: theme('colors.text.light.activeNav');
+    --active-history-text-active: theme('colors.text.light.activeGroupNav');
+    --main-text-color: theme('colors.text.light.main');
+    --inactive-group-nav: theme('colors.text.light.inactiveNav');
+    --active-group-nav: theme('colors.text.light.activeGroupNav');
+}

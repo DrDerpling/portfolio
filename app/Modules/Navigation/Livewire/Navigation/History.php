@@ -7,7 +7,6 @@ namespace App\Modules\Navigation\Livewire\Navigation;
 use App\Modules\Navigation\Models\LinkItem;
 use App\Modules\Navigation\Services\HistoryCacheManager;
 use Illuminate\View\View;
-use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class History extends Component
@@ -15,7 +14,6 @@ class History extends Component
     /**
      * @var LinkItem[]
      */
-    #[Session]
     public array $history = [];
 
     private ?HistoryCacheManager $navigationHistoryRepository = null;
