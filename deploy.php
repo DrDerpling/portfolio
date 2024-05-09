@@ -14,8 +14,6 @@ task('deploy', [
     'npm:install',
     'npm:production',
     'artisan:cache:clear',
-    'artisan:route:cache',
-    'artisan:view:cache',
     'artisan:storage:link',
     'artisan:migrate',
     'deploy:publish',
