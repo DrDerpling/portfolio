@@ -84,13 +84,15 @@ class LinkTreeService
             // ?filter[id][_in]=1&fields=id,page.slug,icon.key,sort,status,link_group
             $items = $this->directusApi->getItems('link_items', [
                 'filter[id][_in]' => implode(',', $linkItemIds),
-                'fields' => 'id,name,page.slug,icon.key,sort,status,link_group']);
+                'fields' => 'id,name,page.slug,page.id,icon.key,sort,status,link_group']);
 
             $item['children'] = array_map(function (array $item) {
                 $item['slug'] = $item['page']['slug'];
+                $item['page_id'] = $item['page']['id'];
                 unset($item['page']);
                 $item['icon'] = $item['icon']['key'];
                 $item['parent_id'] = $item['link_group'];
+                unset($item['link_group']);
 
                 return new LinkItemDataObject($item);
             }, $items);

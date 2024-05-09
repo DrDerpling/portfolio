@@ -40,15 +40,16 @@ class NavigationRepository
 
     public function getByUrl(string $url): ?LinkItemModel
     {
-        // Get the path from the URL
-        $path = parse_url($url, PHP_URL_PATH);
+        $path = parse_url($url, PHP_URL_PATH) ?? '';
 
-        /** @var LinkItemModel $linkItem */
-        $linkItem = LinkItemModel::query()
-            ->where('slug', $path)
+        return $this->getBySlug($path);
+    }
+
+    public function getBySlug(string $slug): ?LinkItemModel
+    {
+        return LinkItemModel::query()
+            ->where('slug', $slug)
             ->first();
-
-        return $linkItem;
     }
 
     public function saveLinkGroup(array $data): LinkGroupModel
@@ -73,6 +74,7 @@ class NavigationRepository
     public function saveLinkItem(array $data): LinkItemModel
     {
         $linkItem = LinkItemModel::firstOrNew(['cms_id' => $data['cms_id']]);
+
         $linkItem->fill($data);
         $linkItem->save();
 

@@ -10,26 +10,24 @@ use App\Modules\Navigation\Services\LinkTreeService;
 use Closure;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\App;
 use Illuminate\View\Component;
 
 class Navbar extends Component
 {
-    public bool $devMode = false;
+    public bool $forceRefresh = false;
 
     /**
      * Create a new component instance.
      */
     public function __construct(public bool $forceVisible = false)
     {
-        $this->devMode = App::environment('local');
+        $this->forceRefresh = (bool)request()->query('force_new');
     }
 
 
     public function render(): View|Closure|string
     {
         return view('navigation.components.navbar', [
-            'devMode' => $this->devMode,
             'links' => $this->getNavLinks(),
             'forceVisible' => $this->forceVisible,
         ]);
@@ -42,6 +40,6 @@ class Navbar extends Component
      */
     private function getNavLinks(): array
     {
-        return app(LinkTreeService::class)->getTree(true, $this->devMode);
+        return app(LinkTreeService::class)->getTree($this->forceRefresh);
     }
 }

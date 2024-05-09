@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Unable to resolve the template type TValue in call to method static method Illuminate\\\\Support\\\\Arr\\:\\:first\\(\\)$#"
-			count: 1
-			path: app/Modules/CMSIntegration/Services/DirectusApi.php
-
-		-
 			message: "#^Undefined variable\\: \\$this$#"
 			count: 1
 			path: app/Modules/Framework/routes/console.php

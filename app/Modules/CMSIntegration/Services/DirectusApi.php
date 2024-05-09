@@ -26,16 +26,37 @@ class DirectusApi
         $response = $this->get("items/$collection", $query)->json();
 
         if (isset($response['errors'])) {
-            /**
-             * @var array{message:string} $firstError
-             */
-            $firstError = Arr::first($response['errors']);
-
-            throw new Exception($firstError['message']);
+            $this->handleError($response);
         }
 
 
         return $response['data'];
+    }
+
+    public function getItem(string $collection, int $id): array
+    {
+        $response = $this->get("items/$collection/$id")->json();
+
+        if (isset($response['errors'])) {
+            $this->handleError($response);
+        }
+
+
+        return $response['data'];
+    }
+
+    /**
+     * @param array{errors:array{array-key,array{message:string}}} $response
+     * @throws Exception
+     */
+    private function handleError(array $response): void
+    {
+        /**
+         * @var array{message:string} $firstError
+         */
+        $firstError = Arr::first($response['errors']);
+
+        throw new Exception($firstError['message']);
     }
 
     /**

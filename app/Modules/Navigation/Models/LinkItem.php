@@ -8,6 +8,7 @@ use App\Modules\Page\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 /**
  *
@@ -57,7 +58,7 @@ class LinkItem extends Model
     public function getUrl(): string
     {
         if ($this->slug === 'home') {
-            return route('home');
+            return URL::to('/');
         }
 
         return route('navigation.link', ['any' => $this->slug]);
@@ -67,6 +68,10 @@ class LinkItem extends Model
     {
         // Get path from the current request
         $currentRoute = Request::capture()->path();
+
+        if ($currentRoute === '/') {
+            $currentRoute = 'home';
+        }
 
         return $this->slug === $currentRoute;
     }
