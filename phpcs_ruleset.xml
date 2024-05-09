@@ -4,7 +4,7 @@
 
     <config name="installed_paths" value="../../slevomat/coding-standard" />
 
-    <exclude-pattern>*/app/Domains/*/resources/*</exclude-pattern>
+    <exclude-pattern>*/app/Modules/*/resources/*</exclude-pattern>
     <!-- Cleaner code -->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
         <properties>
