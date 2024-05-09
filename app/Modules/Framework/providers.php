@@ -10,4 +10,5 @@ return [
     \App\Modules\Skill\Providers\SkillProvider::class,
     \App\Modules\Navigation\Providers\NavigationProvider::class,
     \App\Modules\FeatherIcons\Providers\FeatherIconProvider::class,
+    \App\Modules\Settings\Providers\SettingsProvider::class,
 ];
