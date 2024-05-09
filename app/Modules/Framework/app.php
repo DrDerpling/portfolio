@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Modules\Framework\Services\DomainDirectoryService;
+use App\Modules\Navigation\Middleware\TrackHistoryMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -45,7 +46,7 @@ return Application::configure(basePath: dirname(__DIR__, 3))
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->web(TrackHistoryMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -22,7 +22,7 @@
         <div class="p-4 lg:w-1/3 bg-deep-gray border-2 border-charcoal">
             <h2 class="text-3xl pb-4">Navbar</h2>
             <div>
-                <x-navbar forceVisible="true"></x-navbar>
+                <x-navigation-navbar/>
             </div>
         </div>
     </div>

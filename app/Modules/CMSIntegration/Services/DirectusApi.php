@@ -25,7 +25,6 @@ class DirectusApi
     {
         $response = $this->get("items/$collection", $query)->json();
 
-
         if (isset($response['errors'])) {
             /**
              * @var array{message:string} $firstError
@@ -48,8 +47,6 @@ class DirectusApi
     {
         $url = config('integration.directus.base_uri') . '/' . $endpoint;
 
-        return Http::withToken(config('integration.directus.token'))->get($url, [
-            'query' => $query,
-        ]);
+        return Http::withToken(config('integration.directus.token'))->get($url, $query);
     }
 }

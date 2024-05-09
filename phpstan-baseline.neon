@@ -11,11 +11,6 @@ parameters:
 			path: app/Modules/Framework/routes/console.php
 
 		-
-			message: "#^Offset 'children' on array\\{label\\: 'Dennis portfolio', children\\: array\\{array\\{url\\: string, label\\: 'Home', icon_name\\: 'file\\-text', active\\: bool\\}, array\\{url\\: string, label\\: 'Skills', icon_name\\: 'file\\-text', active\\: bool\\}, array\\{url\\: string, label\\: 'About me', icon_name\\: 'file\\-text', active\\: bool\\}, array\\{url\\: string, label\\: 'Contact', icon_name\\: 'file\\-text', active\\: bool\\}, array\\{url\\: string, label\\: 'Projects', icon_name\\: 'file\\-text', active\\: bool\\}\\}\\}\\|array\\{label\\: 'Dev pages', children\\: array\\{array\\{url\\: string, label\\: 'Components', icon_name\\: 'file\\-text', active\\: bool\\}, array\\{url\\: string, label\\: 'Icons', icon_name\\: 'file\\-text', active\\: bool\\}\\}\\} in isset\\(\\) always exists and is not nullable\\.$#"
-			count: 1
-			path: app/Modules/Frontend/View/Components/Navbar.php
-
-		-
 			message: "#^PHPDoc type array\\<string\\> of property App\\\\Modules\\\\Skill\\\\Models\\\\Skill\\:\\:\\$fillable is not covariant with PHPDoc type array\\<int, string\\> of overridden property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable\\.$#"
 			count: 1
 			path: app/Modules/Skill/Models/Skill.php

@@ -1,6 +1,7 @@
 @php
-    /** @var \App\Modules\Frontend\DataObjects\NavigationLink[] $links */
+    /** @var \App\Modules\Navigation\DataObjects\LinkItem[]|\App\Modules\Navigation\Livewire\Navigation\LinkGroup[] $links */
     /** @var bool $forceVisible */
+    use App\Modules\Navigation\Models\LinkGroup;
 
     $hiddenClass = $forceVisible ? '' : 'hidden lg:block';
 @endphp
@@ -12,12 +13,12 @@
     </div>
     <div class="py-4 pl-4 pr-6">
         @foreach($links as $link)
-            @if($link->hasChildren())
-                <livewire:navigation.link-group :key="$link->getLabel()" :link="$link" :open="$link->hasActiveChildren()"/>
+            @if($link instanceof LinkGroup)
+                <livewire:navigation.components.link-group :key="$link->id" :link-group="$link" :open="$link->hasActiveChildren()"/>
                 @continue
             @endif
 
-            <x-navigation.link-item :key="$link->getLabel()" :link="$link"/>
+            <livewire:navigation.components.link-item :key="$link->getLabel()" hidden="false" :link="$link"/>
         @endforeach
     </div>
 

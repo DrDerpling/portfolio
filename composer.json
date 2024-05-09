@@ -12,6 +12,7 @@
         "phpro/grumphp": "^2.5"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.23",
         "friendsofphp/php-cs-fixer": "^3.52",
         "laravel/pint": "^1.13",

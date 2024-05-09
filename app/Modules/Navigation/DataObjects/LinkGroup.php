@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Frontend\DataObjects;
+namespace App\Modules\Navigation\DataObjects;
 
 use App\Modules\Framework\AbstractDataObject;
 
-class NavigationLink extends AbstractDataObject
+class LinkGroup extends AbstractDataObject
 {
     public function getUrl(): string
     {
@@ -18,24 +18,17 @@ class NavigationLink extends AbstractDataObject
         return (string)$this->get('label');
     }
 
-    public function getIconName(): string
-    {
-        return (string)$this->get('icon_name');
-    }
-
     public function isActive(): bool
     {
         return (bool)$this->get('active');
     }
 
+    /**
+     * @return LinkItem[]
+     */
     public function getChildren(): array
     {
         return $this->get('children');
-    }
-
-    public function hasChildren(): bool
-    {
-        return count($this->getChildren()) > 0;
     }
 
     public function hasActiveChildren(): bool

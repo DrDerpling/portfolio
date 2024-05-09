@@ -10,25 +10,10 @@
     </head>
     <body class="w-full">
         <div class="flex bg-deep-gray text-white lg:h-screen">
-            <x-navbar></x-navbar>
+            <x-navigation-navbar/>
+
             <div class="flex flex-col flex-1 h-screen">
-                <div x-data="{
-                    links: [],
-                    init() {
-                        this.links = JSON.parse(localStorage.getItem('visitedLinks')) || [];
-                    },
-                    removeItem(index) {
-                        this.links.splice(index, 1);
-                        localStorage.setItem('visitedLinks', JSON.stringify(this.links));
-                    }
-                }" x-init="init" class="flex items-end flex-end h-16 min-h-16 bg-charcoal" >
-                    <template x-for="(link, index) in links">
-                        <div class="px-2 py-1 border-t-2 border-t border-t-bright-cyan border-x border-x-slate">
-                            <a  x-text="link.title" :href="link.link" class="text-white"></a>
-                            <button x-on:click="removeItem(index)">x</button>
-                        </div>
-                    </template>
-                </div>
+                <livewire:navigation.components.history/>
                 <div class="flex parent-container h-screen overflow-y-auto">
                    <x-line-numbers line-height="25" height="90" />
                    <div class="p-4 ml-8 container">
