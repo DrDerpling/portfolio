@@ -5,7 +5,7 @@
 
     <!-- Modal Container: Full screen on mobile, 50% width on larger screens -->
     <div style="background-color: var(--secondary-sidebar-bg-color);"
-         class="w-full sm:w-1/2 max-w-xl mx-auto rounded-lg shadow-lg p-4">
+         class="w-full sm:w-1/2 max-w-xl mx-auto rounded shadow-lg p-4">
 
         <!-- Modal title -->
         <div class="flex items-center space-x-1">
