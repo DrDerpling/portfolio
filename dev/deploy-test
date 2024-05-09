@@ -1,0 +1,5 @@
+#!/bin/sh
+
+~/bin/act push -j deploy --secret-file ~/dev/.secrets
+
+ {
