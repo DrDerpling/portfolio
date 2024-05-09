@@ -13,7 +13,7 @@ task('deploy', [
     'deploy:vendors',
     'npm:install',
     'npm:production',
-    'artisan:config:cache',
+    'artisan:cache:clear',
     'artisan:route:cache',
     'artisan:view:cache',
     'artisan:event:cache',
