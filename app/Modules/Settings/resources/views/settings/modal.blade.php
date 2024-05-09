@@ -48,11 +48,3 @@
                 class="mt-4 p-2 border rounded">Close Modal</button>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.add('theme-light');
-        }
-    });
-</script>

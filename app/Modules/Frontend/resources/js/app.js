@@ -27,6 +27,18 @@ const calculateLineNumbersCallback = (element) => {
     }
 }
 
+const themeSwitchCallback = () => {
+    console.log('Theme switch callback');
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('theme-light');
+    } else {
+        document.body.classList.remove('theme-light');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', themeSwitchCallback);
+document.addEventListener("livewire:navigated", themeSwitchCallback);
+
 document.addEventListener("DOMContentLoaded", calculateLineNumbers);
 window.addEventListener("resize", calculateLineNumbers);
 document.addEventListener("livewire:navigated", calculateLineNumbers);
