@@ -11,14 +11,14 @@ set('writable_mode', 'chown');
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
-    'artisan:storage:link',
+    'npm:install',
+    'npm:production',
     'artisan:config:cache',
     'artisan:route:cache',
     'artisan:view:cache',
     'artisan:event:cache',
+    'artisan:storage:link',
     'artisan:migrate',
-    'npm:install',
-    'npm:production',
     'deploy:publish',
 ]);
 
