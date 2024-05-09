@@ -16,7 +16,6 @@ task('deploy', [
     'artisan:cache:clear',
     'artisan:route:cache',
     'artisan:view:cache',
-    'artisan:event:cache',
     'artisan:storage:link',
     'artisan:migrate',
     'deploy:publish',
