@@ -16,14 +16,14 @@ class PageService
     ) {
     }
 
-    public function get(int $id, bool $forceNew = false): Page
+    public function getByCmnsId(int $id, bool $forceNew = false): Page
     {
         if ($forceNew) {
             return $this->getFromDirectus($id);
         }
 
         try {
-            return $this->pageRepository->get($id);
+            return $this->pageRepository->getByCmsId($id);
         } catch (\Exception $e) {
             return $this->getFromDirectus($id);
         }

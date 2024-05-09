@@ -14,6 +14,11 @@ class PageRepository
         return Page::query()->findOrFail($id);
     }
 
+    public function getByCmsId(int $cmsId): Page
+    {
+        return Page::query()->whereCmsId($cmsId)->firstOrFail();
+    }
+
     public function updateOrCreate(array $data): Page
     {
         $cmsId = Arr::get($data, 'cms_id');

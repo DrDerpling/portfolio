@@ -41,7 +41,7 @@ class NavigationController extends Controller
         }
 
         // Lazy load the page from the database or CMS
-        $page = $this->pageService->get($linkItem->page_id, $forceNew);
+        $page = $this->pageService->getByCmnsId($linkItem->page_id, $forceNew);
 
         switch ($page->type) {
             case PageTypes::CONTENT:
