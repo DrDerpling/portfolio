@@ -31,9 +31,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Skill extends Model
 {
-    /**
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'logo',
