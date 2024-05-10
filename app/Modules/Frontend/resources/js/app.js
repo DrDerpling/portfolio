@@ -28,16 +28,22 @@ const calculateLineNumbersCallback = (element) => {
 }
 
 const themeSwitchCallback = () => {
-    console.log('Theme switch callback');
-    if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.add('theme-light');
-    } else {
-        document.body.classList.remove('theme-light');
-    }
-}
 
+    const selectedTheme = localStorage.getItem('theme') || 'dark';
+    const theme = 'theme-' + selectedTheme;
+
+    // Rove any class that starts with 'theme-' from the body
+    document.body.className.split(' ').forEach((className) => {
+        if (className.startsWith('theme-')) {
+            document.body.classList.remove(className);
+        }
+    });
+
+    document.body.classList.add(theme);
+}
 document.addEventListener('DOMContentLoaded', themeSwitchCallback);
 document.addEventListener("livewire:navigated", themeSwitchCallback);
+document.addEventListener('theme-updated', themeSwitchCallback);
 
 document.addEventListener("DOMContentLoaded", calculateLineNumbers);
 window.addEventListener("resize", calculateLineNumbers);

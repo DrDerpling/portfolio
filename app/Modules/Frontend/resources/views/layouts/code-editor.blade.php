@@ -7,7 +7,7 @@
     @vite('app/Modules/Frontend/resources/css/app.css')
     @livewireStyles
 </head>
-    <body class="w-full text-primary-lighter bg-primary" >
+    <body class="w-full text-primary-content bg-primary" >
         <div class="flex flex-col h-screen"> <!-- Uses full screen height -->
             <div class="flex flex-1 overflow-hidden"> <!-- Content area flex container -->
                 <x-navigation-navbar/>
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <!-- Settings button as a fixed bar at the bottom -->
-            <div class="w-full text-center p-2 fixed bottom-0 left-0 z-10 border-t bg-primary border-primary-darkest">
+            <div class="w-full text-center p-2 fixed bottom-0 left-0 z-10 border-t bg-secondary-bottom-bar border-primary-darkest">
                 <x-settings-button/>
             </div>
         </div>

@@ -14,7 +14,7 @@
 
 /* Active link item styling */
 .active-link-item {
-    color: var(--color-text-lighter); /* Text color for active links */
+    color: var(--color-text); /* Text color for active links */
     background-color: var(--color-theme);
     border-top: 2px solid var(--color-alt); /* Optional: add border to top of active item */
     --button-opacity: 1; /* Ensure button is always visible for active items */

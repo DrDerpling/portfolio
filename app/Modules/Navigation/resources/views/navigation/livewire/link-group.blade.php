@@ -9,7 +9,7 @@
         active: $wire.entangle('active'),
     }" wire:loading.remove x-cloak>
     <div @click="open = !open" class="flex cursor-pointer items-center"
-         :class="{ 'font-bold text-primary': active, 'font-normal text-primary-darker': !active }">
+         :class="{ 'font-bold text-primary-lighter': active, 'font-normal text-primary-darker': !active }">
         <div x-show="!open">
             <x-feather-icon x-show="open" name="chevron-right" className="h-5 w-5 stroke-2"/>
         </div>
