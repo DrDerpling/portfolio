@@ -133,3 +133,33 @@
     --color-text-alt: #3399FF;
     --color-text-content: #1a1d26;
 }
+
+.theme-nintendo {
+    --color-theme-lighter: #e6607e;
+    --color-theme: #f3f3f3;
+    --color-theme-darker: #cc1423;
+    --color-theme-darkest: #87000B;
+    --color-alt-bottom-bar: #005CAC;
+    --color-alt: #FF9500;
+    --color-text-lighter: #FFFFFF;
+    --color-text: #005CAC;
+    --color-text-darker: #cfcfcf;
+    --color-text-darkest: #afabab;
+    --color-text-alt: #FF9500;
+    --color-text-content: #1A1A1A;
+}
+
+.theme-random {
+    --color-theme-lighter: #A3D8F4;
+    --color-theme: #F4E285;
+    --color-theme-darker: #F78DA7;
+    --color-theme-darkest: #7C4DFF;
+    --color-alt-bottom-bar: #34D399;
+    --color-alt: #FB7185;
+    --color-text-lighter: #FFFFFF;
+    --color-text: #2D3748;
+    --color-text-darker: #4A5568;
+    --color-text-darkest: #1A202C;
+    --color-text-alt: #ECC94B;
+    --color-text-content: #1A202C;
+}

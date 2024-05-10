@@ -35,6 +35,8 @@
                     <option value="royal-gold">Royal gold</option>
                     <option value="midnight-purple">Midnight purple</option>
                     <option value="directus">Directus</option>
+                    <option value="nintendo">Nintendo (unreadable)</option>
+                    <option value="random">Random (unreadable)</option>
                 </select>
 
                 <!-- Button to Confirm and Apply Theme -->
