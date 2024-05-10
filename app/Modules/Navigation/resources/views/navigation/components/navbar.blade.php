@@ -6,10 +6,10 @@
     $hiddenClass = $forceVisible ? '' : 'hidden lg:block';
 @endphp
 
-<aside class="text-inactive-nav-text {{ $hiddenClass }}" style="background-color: var(--sidebar-bg-color);">
-    <div class="flex px-4 items-start justify-center flex-col h-16 min-h-16" style="background-color: var(--secondary-sidebar-bg-color);">
+<aside class="text-primary bg-primary-darker {{ $hiddenClass }}">
+    <div class="flex px-4 items-start justify-center flex-col h-16 min-h-16 bg-primary-darkest">
         <strong class="text-active-nav-text">Dennis Lindeboom</strong> <!-- dynamic color for active text -->
-        <em class="text-xs" style="color: var(--nav-text-inactive-color);">Backend Developer</em> <!-- dynamic color for inactive text -->
+        <em class="text-xs text-primary-darker">Backend Developer</em> <!-- dynamic color for inactive text -->
     </div>
     <div class="py-4 pl-4 pr-6">
         @foreach($links as $link)

@@ -1,33 +1,26 @@
+
 :root {
-    --sidebar-bg-color: theme('colors.background.dark.sidebar');
-    --main-bg-color: theme('colors.background.dark.main');
-    --secondary-sidebar-bg-color: theme('colors.background.dark.secondarySidebar');
-    --nav-text-inactive-color: theme('colors.text.dark.inactiveNav');
-    --nav-text-active-group-color: theme('colors.text.dark.activeGroupNav');
-    --nav-text-active-color: theme('colors.text.dark.activeNav');
-    --code-line-color: theme('colors.text.dark.codeLine');
-    --active-nav-text: theme('colors.text.dark.activeNav');
-    --active-history-border: theme('colors.text.dark.activeNav');
-    --active-history-text-active: theme('colors.text.dark.activeGroupNav');
-    --main-text-color: theme('colors.text.dark.main');
-    --inactive-group-nav: theme('colors.text.dark.inactiveNav');
-    --active-group-nav: theme('colors.text.dark.activeGroupNav');
+    --color-theme-lighter: #3b3f4a;
+    --color-theme: #282c35;
+    --color-theme-darker: #21242d;
+    --color-theme-darkest: #1a1d26;
+    --color-alt: #1fd5ea;
+    --color-text-lighter: #FFFFFF;
+    --color-text: #BABBC0;
+    --color-text-darker: #8c8e97;
+    --color-text-darkest: #3b3f4a;
+    --color-text-alt: #1fd5ea;
 }
 
-/*:style="`color: ${open ? 'var(--inactive-group-nav)' : 'var(--active-group-nav)'}`">*/
 /* Light theme modifiers */
 .theme-light {
-    --sidebar-bg-color: theme('colors.background.light.sidebar');
-    --main-bg-color: theme('colors.background.light.main');
-    --secondary-sidebar-bg-color: theme('colors.background.light.secondarySidebar');
-    --nav-text-inactive-color: theme('colors.text.light.inactiveNav');
-    --nav-text-active-group-color: theme('colors.text.light.activeGroupNav');
-    --nav-text-active-color: theme('colors.text.light.activeNav');
-    --code-line-color: theme('colors.text.light.codeLine');
-    --active-nav-text: theme('colors.text.light.activeNav');
-    --active-history-border: theme('colors.text.light.activeNav');
-    --active-history-text-active: theme('colors.text.light.activeGroupNav');
-    --main-text-color: theme('colors.text.light.main');
-    --inactive-group-nav: theme('colors.text.light.inactiveNav');
-    --active-group-nav: theme('colors.text.light.activeGroupNav');
+    --color-theme: #FFFFFF;
+    --color-theme-darker: #f0f4f9;
+    --color-theme-darkest: #e4eaf1;
+    --color-alt: #3399FF;
+    --color-text-lighter: #333333;
+    --color-text: #2E3E53;
+    --color-text-darker: #172940;
+    --color-text-darkest: #afb3b8;
+    --color-text-alt: #3399FF;
 }

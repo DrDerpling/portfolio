@@ -2,7 +2,7 @@
     /** @var \App\Modules\Navigation\Models\LinkItem[] $history */
 @endphp
 
-<div class="flex items-end h-16 min-h-16" style="background-color: var(--secondary-sidebar-bg-color);">
+<div class="flex items-end h-16 min-h-16 bg-primary-darkest"
     @foreach($history as $index => $link)
         @php
             $isActive = $link->isActive();
@@ -11,13 +11,15 @@
         @endphp
 
         <div class="{{ $containerClass }} flex items-center px-2 py-1">
-            <a href="{{ $link->getUrl() }}" wire:navigate.hover>
+
+            <a href="{{ $link->getUrl() }}" class="flex items-center" wire:navigate.hover>
+                <x-feather-icon name="{{ $link->icon }}" className="h-4 w-4 mr-2"/>
                 {{ $link->name }}
             </a>
             <button
-                class="ml-1 h-4 w-4 {{ $buttonClass }}"
+                class="{{ $buttonClass }} ml-1"
                 wire:click="removeItem(@js($index))">
-                <x-feather-icon name="x" className="h-4 w-4"/>
+                <x-feather-icon name="x" className="h-5 w-5 stroke-1 hover:stroke-2"/>
             </button>
         </div>
     @endforeach
