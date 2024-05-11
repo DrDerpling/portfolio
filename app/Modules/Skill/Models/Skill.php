@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Modules\Skill\Models
  * @property string $name
- * @property string $logo
+ * @property string $logo // Path to the logo or directus asset id of the logo
  * @property int $proficiency
  * @property int $cms_id
  * @property int $id

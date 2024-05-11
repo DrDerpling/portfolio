@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\CMSIntegration\Services;
 
 use Exception;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
@@ -43,6 +44,53 @@ class DirectusApi
 
 
         return $response['data'];
+    }
+
+    public function findAssets(string $id, array $query): array
+    {
+        $response = $this->get("assets/$id", $query)->json();
+
+        if (isset($response['errors'])) {
+            $this->handleError($response);
+        }
+
+        return $response['data'];
+    }
+
+    public function downloadAssets(
+        string $id,
+        array $query,
+        FilesystemAdapter $disk,
+        ?string $filePath = null,
+    ): string {
+
+        // This is required to download the file from Directus
+        if (!Arr::has($query, 'download')) {
+            $query['download'] = '1';
+        }
+
+        $response = $this->get("assets/$id", $query);
+
+        if (!$response->successful()) {
+            $this->handleError(
+                $response->json()
+            ); // Might cause an error since I don't know what the response looks like
+        }
+
+
+        $file = $this->get("assets/$id", $query)->body();
+
+        if (!$filePath) {
+            $filePath = $response->header('Content-Disposition');
+            $filePath = 'assets/' . $filePath;
+            $disk->put($filePath, $file);
+
+            return $disk->path($filePath);
+        }
+
+        $disk->put($filePath, $file);
+
+        return $disk->path($filePath);
     }
 
     /**

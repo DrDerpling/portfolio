@@ -87,6 +87,6 @@ abstract class ContentRepository
      */
     public function getList(string $modelClass): Collection
     {
-        return $modelClass::all();
+        return $modelClass::orderBy('sort')->get();
     }
 }

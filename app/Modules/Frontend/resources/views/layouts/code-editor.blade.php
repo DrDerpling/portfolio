@@ -11,7 +11,7 @@
         <div class="flex flex-col h-screen"> <!-- Uses full screen height -->
             <div class="flex flex-1 overflow-hidden"> <!-- Content area flex container -->
                 <x-navigation-navbar/>
-                <div class="flex flex-col flex-1 overflow-y-auto"> <!-- Main content flex container -->
+                <div class="flex h-screen flex-col flex-1 overflow-y-auto"> <!-- Main content flex container -->
                     <livewire:navigation.components.history/>
                     <div class="flex flex-1 overflow-hidden">
                         <x-line-numbers line-height="25" height="90"/>

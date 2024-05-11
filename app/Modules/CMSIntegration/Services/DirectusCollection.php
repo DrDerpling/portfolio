@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Modules\CMSIntegration\Services;
 
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Storage;
+
 class DirectusCollection
 {
     protected array $filters = [];
     protected array $fields = [];
+    protected array $queryParameters = [];
 
     final public function __construct(protected string $collectionName, protected DirectusApi $httpClient)
     {
@@ -28,6 +32,12 @@ class DirectusCollection
         return $this;
     }
 
+    public function addQueryParameter(string $key, mixed $value): self
+    {
+        $this->queryParameters[$key] = $value;
+        return $this;
+    }
+
     public function fields(string ...$fields): self
     {
         $this->fields = $fields;
@@ -42,9 +52,29 @@ class DirectusCollection
         return $this->httpClient->getItems($this->collectionName, $queryParameters);
     }
 
-    public function find(int $id): array
+    public function find(int|string $id): array
     {
+        if ($this->collectionName === 'assets') {
+            return $this->httpClient->findAssets($id, $this->buildQueryParameters());
+        }
+
         return $this->httpClient->getItem($this->collectionName, $id);
+    }
+
+    public function download(
+        string $id,
+        ?FilesystemAdapter $disk = null,
+        ?string $filePath = null
+    ): string {
+        if ($this->collectionName !== 'assets') {
+            throw new \Exception('Download method is only available for assets collection');
+        }
+
+        if (is_null($disk)) {
+            $disk = Storage::disk('local');
+        }
+
+        return $this->httpClient->downloadAssets($id, $this->buildQueryParameters(), $disk, $filePath);
     }
 
     protected function buildQueryParameters(): array
@@ -59,6 +89,10 @@ class DirectusCollection
 
         if (!empty($this->fields)) {
             $parameters['fields'] = implode(',', $this->fields);
+        }
+
+        if (!empty($this->queryParameters)) {
+            $parameters = array_merge($parameters, $this->queryParameters);
         }
 
         return $parameters;

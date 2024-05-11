@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Frontend\Providers;
 
-use App\Modules\Frontend\View\Components\Skill;
+use App\Modules\Skill\View\Skill;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
