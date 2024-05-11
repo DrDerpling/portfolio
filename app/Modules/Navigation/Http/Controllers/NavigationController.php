@@ -8,6 +8,7 @@ use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Repositories\NavigationRepository;
 use App\Modules\Page\Services\PageService;
 use App\Modules\Page\Types\PageTypes;
+use App\Modules\Skill\Models\Skill;
 use App\Modules\Skill\Services\SkillService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -51,7 +52,7 @@ class NavigationController extends Controller
             case PageTypes::COMPONENTS:
                 return view(
                     'pages.components',
-                    ['page' => $page,  'skills' => $this->skillService->getSkills($forceNew)]
+                    ['page' => $page,  'skills' => $this->skillService->getList(Skill::class, $forceNew)]
                 );
             default:
                 abort(404);

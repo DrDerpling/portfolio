@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace App\Modules\Navigation\Services;
 
-use App\Modules\CMSIntegration\Services\DirectusApi;
+use App\Modules\CMSIntegration\Services\CMSDataService;
+use App\Modules\Framework\AbstractDataObject;
 use App\Modules\Navigation\DataObjects\LinkGroup as LinkGroupDataObject;
 use App\Modules\Navigation\DataObjects\LinkItem as LinkItemDataObject;
 use App\Modules\Navigation\Models\LinkGroup;
 use App\Modules\Navigation\Models\LinkItem;
 use App\Modules\Navigation\Repositories\NavigationRepository;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Database\Eloquent\Model;
 
-class LinkTreeService
+class LinkTreeService extends CMSDataService
 {
     public function __construct(
-        private NavigationRepository $navigationRepository,
-        private DirectusApi $directusApi
+        protected NavigationRepository $navigationRepository,
     ) {
+        parent::__construct($navigationRepository);
     }
 
     /**
@@ -42,49 +44,32 @@ class LinkTreeService
         return $links;
     }
 
-
-    /**
-     * @param LinkGroupDataObject[] $items
-     * @return LinkGroup[]
-     */
-    private function saveItems(array $items): array
-    {
-        $result = [];
-
-        foreach ($items as $item) {
-            $result[] = $this->saveItem($item);
-        }
-
-        return $result;
-    }
-
     /**
      * @param LinkGroupDataObject $item
      * @return LinkGroup
      */
-    private function saveItem(LinkGroupDataObject $item): LinkGroup
+    protected function saveItem(AbstractDataObject $item): Model
     {
         $item->set('cms_id', $item->get('id'));
 
-        return $this->navigationRepository->saveLinkGroup($item->toArray());
+        return $this->navigationRepository->updateOrCreate($item->toArray(), LinkGroup::class);
     }
 
     /**
+     * @param int|null $id
      * @return array
-     * @throws GuzzleException
-     * @throws \JsonException
      */
-    private function getFromDirectus(): array
+    protected function getFromDirectus(int $id = null): array
     {
-        $directusItems = $this->directusApi->getItems('link_group');
+        $directusItems = directusCollection('link_group')->get();
 
         $directusItems = array_map(function (array $item) {
             $linkItemIds = array_values($item['link_items']);
 
-            // ?filter[id][_in]=1&fields=id,page.slug,icon.key,sort,status,link_group
-            $items = $this->directusApi->getItems('link_items', [
-                'filter[id][_in]' => implode(',', $linkItemIds),
-                'fields' => 'id,name,page.slug,page.id,icon.key,sort,status,link_group']);
+            $items = directusCollection('link_items')
+                ->where('id', '_in', implode(',', $linkItemIds))
+                ->fields('id', 'name', 'page.slug', 'page.id', 'icon.key', 'sort', 'status', 'link_group')
+                ->get();
 
             $item['children'] = array_map(function (array $item) {
                 $item['slug'] = $item['page']['slug'];

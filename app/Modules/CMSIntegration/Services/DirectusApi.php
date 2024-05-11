@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Modules\CMSIntegration\Services;
 
 use Exception;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use JsonException;
 
 class DirectusApi
 {
@@ -18,8 +16,10 @@ class DirectusApi
     }
 
     /**
-     * @throws GuzzleException
-     * @throws JsonException
+     * @param string $collection
+     * @param array $query
+     * @return array
+     * @throws Exception
      */
     public function getItems(string $collection, array $query = []): array
     {

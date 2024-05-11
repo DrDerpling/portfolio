@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Modules\Navigation\Repositories;
 
 use App\Modules\CMSIntegration\Enums\StatusEnum;
+use App\Modules\CMSIntegration\Repositories\ContentRepository;
 use App\Modules\Navigation\DataObjects\LinkItem;
 use App\Modules\Navigation\Models\LinkGroup as LinkGroupModel;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
+use InvalidArgumentException;
 
-class NavigationRepository
+class NavigationRepository extends ContentRepository
 {
     /**
      * @param bool $devMode
@@ -85,5 +87,45 @@ class NavigationRepository
         $linkItem->save();
 
         return $linkItem;
+    }
+
+    /**
+     * @param array $data
+     * @param class-string<LinkGroupModel>|class-string<LinkItemModel> $modelClass
+     * @return LinkGroupModel|LinkItemModel
+     */
+    public function updateOrCreate(array $data, string $modelClass): LinkGroupModel|LinkItemModel
+    {
+        $cmsId = $data['cms_id'];
+
+        if ($modelClass === LinkGroupModel::class) {
+            /** @var class-string<LinkGroupModel> $modelClass */
+            $hydratedData = $this->prepareData($data, ['name', 'children', 'status', 'sort', 'cms_id']);
+            $linkGroup = $modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
+
+            if (isset($data['children'])) {
+                /** @var LinkItem $child */
+                foreach ($data['children'] as $child) {
+                    $child->set('parent_id', $linkGroup->id);
+                    $child->set('cms_id', $child->get('id'));
+
+                    $this->saveLinkItem($child->toArray());
+                }
+            }
+
+            return $linkGroup;
+        }
+
+        if ($modelClass === LinkItemModel::class) {
+            /** @var class-string<LinkItemModel> $modelClass */
+            $hydratedData = $this->prepareData(
+                $data,
+                ['name', 'slug', 'page_id', 'icon', 'parent_id', 'status', 'sort', 'cms_id']
+            );
+
+            return $modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
+        }
+
+        throw new InvalidArgumentException('Invalid model class provided');
     }
 }

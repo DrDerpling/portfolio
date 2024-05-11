@@ -4,38 +4,27 @@ declare(strict_types=1);
 
 namespace App\Modules\Skill\Repositories;
 
+use App\Modules\CMSIntegration\Repositories\ContentRepository;
 use App\Modules\Skill\Models\Skill;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
-class SkillRepository
+class SkillRepository extends ContentRepository
 {
     /**
-     * Returns
-     *
-     * @return Collection<Skill>
+     * @param array $data
+     * @param class-string<Skill> $modelClass
+     * @return Skill
      */
-    public function getList(): Collection
+    public function updateOrCreate(array $data, string $modelClass): Skill
     {
-        return Skill::all();
-    }
-
-    public function updateOrCreate(array $data): Skill
-    {
+        $hydratedData = $this->prepareData($data, ['name', 'logo', 'proficiency', 'cms_id']);
         $cmsId = Arr::get($data, 'cms_id');
-        $hydratedData = Arr::only($data, ['name', 'logo', 'proficiency', 'cms_id']);
 
         if (!$cmsId) {
             throw new InvalidArgumentException('cms_id is required');
         }
 
-            /** @var Skill|null $skill */
-        $skill = Skill::query()->updateOrCreate(
-            ['cms_id' => $cmsId],
-            $hydratedData
-        );
-
-        return $skill;
+        return $modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
     }
 }

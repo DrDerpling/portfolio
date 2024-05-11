@@ -4,30 +4,27 @@ declare(strict_types=1);
 
 namespace App\Modules\Page\Repositories;
 
+use App\Modules\CMSIntegration\Repositories\ContentRepository;
 use App\Modules\Page\Models\Page;
 use Illuminate\Support\Arr;
+use InvalidArgumentException;
 
-class PageRepository
+class PageRepository extends ContentRepository
 {
-    public function get(int $id): Page
+    /**
+     * @param array $data
+     * @param class-string<Page> $modelClass
+     * @return Page
+     */
+    public function updateOrCreate(array $data, string $modelClass): Page
     {
-        return Page::query()->findOrFail($id);
-    }
-
-    public function getByCmsId(int $cmsId): Page
-    {
-        return Page::query()->whereCmsId($cmsId)->firstOrFail();
-    }
-
-    public function updateOrCreate(array $data): Page
-    {
+        $hydratedData = $this->prepareData($data, ['name', 'type', 'slug', 'content', 'status','cms_id']);
         $cmsId = Arr::get($data, 'cms_id');
-        $hydratedData = Arr::only($data, ['name', 'type', 'slug', 'content', 'status','cms_id']);
 
-        $page = Page::whereCmsId($cmsId)->firstOrNew();
-        $page->fill($hydratedData);
-        $page->save();
+        if (!$cmsId) {
+            throw new InvalidArgumentException('cms_id is required');
+        }
 
-        return $page;
+        return $modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
     }
 }
