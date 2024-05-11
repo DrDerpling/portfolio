@@ -6,6 +6,7 @@ namespace App\Modules\Navigation\Http\Controllers;
 
 use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Repositories\NavigationRepository;
+use App\Modules\Page\Models\Page;
 use App\Modules\Page\Services\PageService;
 use App\Modules\Page\Types\PageTypes;
 use App\Modules\Skill\Models\Skill;
@@ -41,8 +42,11 @@ class NavigationController extends Controller
             return view('pages.initialize');
         }
 
-        // Lazy load the page from the database or CMS
-        $page = $this->pageService->getByCmnsId($linkItem->page_id, $forceNew);
+        /**
+         * Lazy load page model
+         * @var Page $page
+         */
+        $page = $this->pageService->find($linkItem->page_id, Page::class, $forceNew);
 
         switch ($page->type) {
             case PageTypes::CONTENT:

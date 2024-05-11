@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Navigation\Services;
 
 use App\Modules\CMSIntegration\Services\CMSDataService;
+use App\Modules\CMSIntegration\Services\DirectusCollection;
 use App\Modules\Framework\AbstractDataObject;
 use App\Modules\Navigation\DataObjects\LinkGroup as LinkGroupDataObject;
 use App\Modules\Navigation\DataObjects\LinkItem as LinkItemDataObject;
@@ -61,12 +62,12 @@ class LinkTreeService extends CMSDataService
      */
     protected function getFromDirectus(int $id = null): array
     {
-        $directusItems = directusCollection('link_group')->get();
+        $directusItems = DirectusCollection::collection('link_group')->get();
 
         $directusItems = array_map(function (array $item) {
             $linkItemIds = array_values($item['link_items']);
 
-            $items = directusCollection('link_items')
+            $items = DirectusCollection::collection('link_items')
                 ->where('id', '_in', implode(',', $linkItemIds))
                 ->fields('id', 'name', 'page.slug', 'page.id', 'icon.key', 'sort', 'status', 'link_group')
                 ->get();

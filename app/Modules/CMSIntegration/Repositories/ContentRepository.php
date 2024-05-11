@@ -27,15 +27,13 @@ abstract class ContentRepository
     }
 
     /**
-     * Retrieve an entity by a CMS-specific ID using the specified model class.
-     *
      * @template T of Model
-     * @param int $cmsId The CMS ID of the entity.
-     * @param class-string<T> $modelClass The model class to use for the query.
-     * @return T The model instance retrieved.
+     * @param int $cmsId
+     * @param class-string<T> $modelClass
+     * @return T
      * @throws InvalidArgumentException If the model class is invalid.
      */
-    public function getByCmsId(int $cmsId, string $modelClass)
+    public function getByCmsId(int $cmsId, string $modelClass): Model
     {
         $this->validateModelClass($modelClass);
 

@@ -53,15 +53,35 @@ abstract class CMSDataService
     }
 
     /**
+     * @template T of Model
+     * @param int $id
+     * @param class-string<T> $modelClass
+     * @param bool $forceNew
+     * @return Model
+     */
+    public function find(int $id, string $modelClass, bool $forceNew = false): Model
+    {
+        if ($forceNew) {
+            return $this->getFromDirectus($id);
+        }
+
+        try {
+            return $this->repository->getByCmsId($id, $modelClass);
+        } catch (\Exception $e) {
+            return $this->getFromDirectus($id);
+        }
+    }
+
+    /**
      * Generic method to fetch data from Directus API, either a single item or multiple items.
      */
     protected function fetchFromDirectus(string $collection, int $id = null): array
     {
         if ($id) {
-            return directusCollection($collection)->find($id);
+            return DirectusCollection::collection($collection)->find($id);
         }
 
-        return directusCollection($collection)->get();
+        return DirectusCollection::collection($collection)->get();
     }
 
     /**
