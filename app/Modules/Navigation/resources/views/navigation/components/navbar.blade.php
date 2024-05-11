@@ -7,12 +7,11 @@
            class="transform top-0 left-0 w-64 bg-primary-darker fixed h-full overflow-auto ease-in-out
            border-r lg:border-r-0 border-primary-darkest
            shadow-xl lg:shadow-none
-           transition-all duration-300 z-30 lg:translate-x-0 lg:static lg:block">
-        <div class="flex px-4 items-start justify-center flex-col h-16 min-h-16 bg-primary-darkest">
+           transition-all duration-300 z-10 lg:translate-x-0 lg:static lg:block">
+        <div class="flex px-4 items-start justify-center flex-col h-16 min-h-16 text-primary-lighter bg-primary-darkest">
             <x-feather-icon name="x" className="absolute top-4 right-4 cursor-pointer lg:hidden h-8 w-8" @click="open = false"/>
-            <strong class="text-active-nav-text">Dennis Lindeboom</strong>
+            <strong>Dennis Lindeboom</strong>
             <em class="text-xs text-primary-darker">Backend Developer</em>
-
         </div>
         <div class="py-4 pl-4 pr-6">
             @foreach($links as $link)
