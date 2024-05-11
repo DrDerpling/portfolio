@@ -7,24 +7,31 @@
     @vite('app/Modules/Frontend/resources/css/app.css')
     @livewireStyles
 </head>
-    <body class="w-full text-primary-content bg-primary" >
-        <div class="flex flex-col h-screen"> <!-- Uses full screen height -->
-            <div class="flex flex-1 overflow-hidden"> <!-- Content area flex container -->
-                <x-navigation-navbar/>
+    <body class="w-full text-primary-content bg-primary overflow-hidden" >
+        <div class="flex flex-col h-screen">
+            <div class="flex flex-1n">
+               <x-navigation-navbar/>
                 <div class="flex h-screen flex-col flex-1 overflow-y-auto"> <!-- Main content flex container -->
-                    <livewire:navigation.components.history/>
-                    <div class="flex flex-1 overflow-hidden">
+                    <header class="bg-primary-darkest flex items-center">
+                        <div x-data="{}" class="lg:hidden p-2">
+                            <button @click="$dispatch('open-sidebar')" id="menu" type="button" class="flex p-2 rounded-lg hover:bg-primary-darker items-center justify-center w-full h-full">
+                                <x-feather-icon name="menu" class="h-5 w-5 stroke-2"/>
+                            </button>
+                        </div>
+                        <livewire:navigation.components.history/>
+                    </header>
+                    <main x-data="{}" @click="$dispatch('open-sidebar')" class="flex flex-1 overflow-y-auto">
                         <x-line-numbers line-height="25" height="90"/>
                         <div class="p-4 ml-8 flex-1">
                             @yield('content')
                         </div>
-                    </div>
+                    </main>
                 </div>
             </div>
             <!-- Settings button as a fixed bar at the bottom -->
-            <div class="w-full text-center p-2 fixed bottom-0 left-0 z-10 border-t bg-secondary-bottom-bar border-primary-darkest">
+            <footer class="w-full text-center p-2 fixed bottom-0 left-0 z-10 border-t bg-secondary-bottom-bar border-primary-darkest">
                 <x-settings-button/>
-            </div>
+            </footer>
         </div>
 
         <x-settings-modal/>

@@ -41,6 +41,9 @@ const themeSwitchCallback = () => {
 
     document.body.classList.add(theme);
 }
+
+
+
 document.addEventListener('DOMContentLoaded', themeSwitchCallback);
 document.addEventListener("livewire:navigated", themeSwitchCallback);
 document.addEventListener('theme-updated', themeSwitchCallback);

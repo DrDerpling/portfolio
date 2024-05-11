@@ -19,6 +19,7 @@ class SkillRepository extends ContentRepository
     public function updateOrCreate(array $data, string $modelClass): Skill
     {
         $hydratedData = $this->prepareData($data, ['name', 'logo', 'proficiency', 'cms_id', 'sort']);
+
         $cmsId = Arr::get($data, 'cms_id');
 
         if (!$cmsId) {

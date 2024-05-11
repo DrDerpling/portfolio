@@ -44,6 +44,11 @@ class Skill extends Component
             return array_search($key, array_keys($ranges), true);
         });
 
+        // Sort the skills within each group by the name
+        $skills = $skills->map(function ($group) {
+            return $group->sortBy('sort');
+        });
+
         return view('skill.components.overview', ['groupedSkills' => $skills]);
     }
 }

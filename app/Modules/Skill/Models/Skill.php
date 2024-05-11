@@ -36,5 +36,6 @@ class Skill extends Model
         'logo',
         'proficiency',
         'cms_id',
+        'sort',
     ];
 }
