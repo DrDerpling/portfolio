@@ -11,4 +11,5 @@ return [
     \App\Modules\Navigation\Providers\NavigationProvider::class,
     \App\Modules\FeatherIcons\Providers\FeatherIconProvider::class,
     \App\Modules\Settings\Providers\SettingsProvider::class,
+    \App\Modules\Project\Providers\ProjectProvider::class,
 ];

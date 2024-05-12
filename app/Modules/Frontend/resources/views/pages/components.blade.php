@@ -37,5 +37,11 @@
                 <x-settings-modal/>
             </div>
         </div>
+        <div class="pt-4 lg:space-x-4 lg:space-y-0 space-y-2 flex flex-col lg:flex-row">
+            <div class="w-full">
+                <h2 class="text-3xl pb-4">Projects</h2>
+                <x-project-overview />
+            </div>
+        </div>
     </div>
 @endsection
