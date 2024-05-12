@@ -3,7 +3,10 @@
     /** @var bool $forceVisible */
     use App\Modules\Navigation\Models\LinkGroup;
 @endphp
-    <aside x-data="{ open: false }" @open-sidebar.window="open = !open" x-cloak :class="open ? 'translate-x-0' : '-translate-x-full'"
+    <aside x-data="{ open: false }" @toggle-sidebar.window="open = !open"
+           @close-sidebar.window="open = false"
+           @open-sidebar.window="open = true"
+           x-cloak :class="open ? 'translate-x-0' : '-translate-x-full'"
            class="transform top-0 left-0 w-64 bg-primary-darker fixed h-full overflow-auto ease-in-out
            border-r lg:border-r-0 border-primary-darkest
            shadow-xl lg:shadow-none
