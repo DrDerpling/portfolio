@@ -2,7 +2,7 @@
     /** @var \App\Modules\Navigation\Models\LinkItem $link */
     /** @var bool $hidden */
 
-    $isActive = $link->isActive();
+    $isActive = $link->is_active;
     $isActiveClass = $isActive ? 'text-secondary' : '';
     $hiddenClass = $hidden ? 'hidden' : '';
 @endphp

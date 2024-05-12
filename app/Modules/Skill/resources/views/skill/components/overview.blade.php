@@ -4,7 +4,6 @@
 
 <div class="w-full text-primary bg-primary-darker border-primary-darkest border flex justify-center">
     <div class="bg-primary text-primary-content p-6 w-full lg:max-w-4xl mx-auto">
-        <h2 class="text-2xl font-bold mb-4">Skills & Expertise</h2>
         @foreach($groupedSkills as $groups => $skills)
             <div class="mb-4">
                 <h3 class="font-semibold text-lg mb-2">{{ $groups }}</h3>

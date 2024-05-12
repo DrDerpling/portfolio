@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Skill whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Skill whereProficiency($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Skill whereUpdatedAt($value)
+ * @property int $sort
+ * @method static \Illuminate\Database\Eloquent\Builder|Skill whereSort($value)
  * @mixin \Eloquent
  */
 class Skill extends Model

@@ -23,14 +23,15 @@ class History extends Component
         return view('navigation.livewire.history');
     }
 
-    public function boot(array $history = []): void
+    public function mount(array $history = []): void
     {
         if (!empty($history)) {
-            $this->history = $history;
+            $this->history = array_slice($history, 0, 3);
             return;
         }
 
-        $this->history = $this->getHistory();
+        // Max of 3 items
+        $this->history = array_slice($this->getHistory(), 0, 3);
     }
 
     /**

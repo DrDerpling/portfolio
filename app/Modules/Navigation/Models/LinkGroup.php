@@ -53,7 +53,7 @@ class LinkGroup extends Model
     public function hasActiveChildren(): bool
     {
         foreach ($this->children as $child) {
-            if ($child->isActive()) {
+            if ($child->is_active) {
                 return true;
             }
         }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Navigation\Models;
 
 use App\Modules\Page\Models\Page;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
@@ -40,6 +41,7 @@ use Illuminate\Support\Facades\URL;
  * @property-read \App\Modules\Navigation\Models\LinkGroup|null $linkGroup
  * @property-read Page|null $page
  * @method static \Illuminate\Database\Eloquent\Builder|LinkItem whereCmsId($value)
+ * @property bool $is_active
  * @mixin \Eloquent
  */
 class LinkItem extends Model
@@ -64,7 +66,15 @@ class LinkItem extends Model
         return route('navigation.link', ['any' => $this->slug]);
     }
 
-    public function isActive(): bool
+    public function isActive(): Attribute
+    {
+        return Attribute::make(
+            get: fn(?bool $value) => $value !== null ? $value : $this->computeActive(),
+            set: static fn(bool $value) => $value,
+        );
+    }
+
+    private function computeActive(): bool
     {
         // Get path from the current request
         $currentRoute = Request::capture()->path();

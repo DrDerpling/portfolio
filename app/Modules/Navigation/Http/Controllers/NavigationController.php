@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Navigation\Http\Controllers;
 
 use App\Modules\Framework\Http\Controllers\Controller;
+use App\Modules\Navigation\Models\LinkItem;
 use App\Modules\Navigation\Repositories\NavigationRepository;
 use App\Modules\Page\Models\Page;
 use App\Modules\Page\Services\PageService;
@@ -54,12 +55,30 @@ class NavigationController extends Controller
             case PageTypes::HOME:
                 return view('pages.home', ['page' => $page]);
             case PageTypes::COMPONENTS:
-                return view(
-                    'pages.components',
-                    ['page' => $page,  'skills' => $this->skillService->getList(Skill::class, $forceNew)]
-                );
+                return $this->resolveComponentsPage($page, $forceNew);
             default:
                 abort(404);
         }
+    }
+
+    private function resolveComponentsPage(Page $page, bool $forceNew): View
+    {
+        /**
+         * @var LinkItem[] $history
+         */
+        $history = $this->navigationRepository->getList(LinkItem::class)->take(2)->all();
+
+        if (count($history) > 0) {
+            $history[0]->is_active = true;
+        }
+
+        return view(
+            'pages.components',
+            [
+                'page' => $page,
+                'skills' => $this->skillService->getList(Skill::class, $forceNew),
+                'history' => $history
+            ]
+        );
     }
 }
