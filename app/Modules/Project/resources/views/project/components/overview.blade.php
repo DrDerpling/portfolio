@@ -5,9 +5,9 @@
     <!-- Slides -->
 
     <div x-show="activeSlide === 1" :key="1"
-         class="px-24 px-12  py-4 flex items-center">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
+         class="lg:px-24 px-12  py-4 flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="hidden lg:block overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
                 <img src="{{ asset('storage/projects/project_gezond.png') }}" alt="Project Gezond App Interface"
                      class="w-full h-48 object-contain flex-shrink-0">
                 <div class="p-4 flex-col bg-primary-darker flex justify-between flex-1">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
+            <div class="hidden md:block overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
                 <img src="{{ asset('storage/projects/just_carpets.png') }}" alt="Just Carpets Custom Mats"
                      class="w-full h-48 object-contain flex-shrink-0">
                 <div class="p-4 bg-primary-darker flex flex-col justify-between flex-1">
@@ -77,9 +77,9 @@
         </div>
     </div>
     <div x-show="activeSlide === 2" :key="2"
-         class="px-24 px-12  py-4 flex items-center">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
+         class="lg:px-24 px-12  py-4 flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="hidden lg:block overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
                 <img src="{{ asset('storage/projects/just_carpets.png') }}" alt="Just Carpets Custom Mats"
                      class="w-full h-48 object-contain flex-shrink-0">
                 <div class="p-4 bg-primary-darker flex flex-col justify-between flex-1">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
+            <div class="hidden md:block overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
                 <img src="{{ asset('storage/projects/bunzlau_castle.png') }}" alt="Bunzlau Castle Tableware"
                      class="w-full h-48 object-contain flex-shrink-0">
                 <div class="p-4 bg-primary-darker flex flex-col justify-between flex-1">
@@ -149,9 +149,9 @@
         </div>
     </div>
     <div x-show="activeSlide === 3" :key="3"
-         class="px-24 px-12  py-4 flex items-center">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <div class="overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
+         class="lg:px-24 px-12 py-4 flex items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="hidden lg:block overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
                 <img src="{{ asset('storage/projects/bunzlau_castle.png') }}" alt="Bunzlau Castle Tableware"
                      class="w-full h-48 object-contain flex-shrink-0">
                 <div class="p-4 bg-primary-darker flex flex-col justify-between flex-1">
@@ -174,7 +174,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
+            <div class="hidden md:block overflow-hidden shadow-lg hover:shadow-2xl bg-primary-darkest transition-shadow duration-300 flex flex-col">
                 <img src="{{ asset('storage/projects/project_gezond.png') }}" alt="Project Gezond App Interface"
                      class="w-full h-48 object-contain flex-shrink-0">
                 <div class="p-4 flex-col bg-primary-darker flex justify-between flex-1">
