@@ -1,4 +1,4 @@
-<div data="{}" class="w-full sm:w-1/2 max-w-xl mx-auto rounded shadow-lg p-4 text-primary-lighter bg-primary-darker">
+<div data="{}" class="w-full md:w-1/2 max-w-xl mx-auto rounded shadow-lg p-4 text-primary-lighter bg-primary-darker">
     <!-- Modal title -->
     <div class="flex items-center space-x-1">
         <x-feather-icon name="settings" className="h-5 w-5"/>
