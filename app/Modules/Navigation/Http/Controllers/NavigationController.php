@@ -99,8 +99,6 @@ class NavigationController extends Controller
             ];
         }
 
-//        dd($projects);
-
         return view(
             'pages.components',
             [
