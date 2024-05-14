@@ -318,7 +318,7 @@
     </div>
 
     <!-- Buttons -->
-    <div class="absolute w-full flex items-center justify-center px-4">
+    <div class="absolute w-full flex items-center justify-center">
         <div class="flex items-center justify-start">
             <button
                     class="border border-primary-darkest text-primary hover:bg-secondary hover:text-darkest hover:shadow-lg rounded-md px-4 py-2"
