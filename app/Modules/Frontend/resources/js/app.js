@@ -43,7 +43,6 @@ const themeSwitchCallback = () => {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', themeSwitchCallback);
 document.addEventListener("livewire:navigated", themeSwitchCallback);
 document.addEventListener('theme-updated', themeSwitchCallback);
@@ -51,3 +50,45 @@ document.addEventListener('theme-updated', themeSwitchCallback);
 document.addEventListener("DOMContentLoaded", calculateLineNumbers);
 window.addEventListener("resize", calculateLineNumbers);
 document.addEventListener("livewire:navigated", calculateLineNumbers);
+
+document.addEventListener('alpine:init', () => {
+    Alpine.data('projectSlider', (projects = []) => ({
+        projects: projects,
+        currentIndex: 0,
+
+        init() {
+            this.updateCarousel();
+        },
+
+        updateCarousel() {
+            const container = this.$refs.container;
+
+            // Select the first div in the container
+            const div = container.querySelector('div');
+
+            if (!div) {
+                return;
+            }
+
+            container.scrollLeft = this.currentIndex * div.offsetWidth;
+        },
+
+        next() {
+            if (this.currentIndex > this.projects.length - 1) {
+                return;
+            }
+
+            this.currentIndex++;
+            this.updateCarousel();
+        },
+
+        prev() {
+            if (this.currentIndex <= 0) {
+                return;
+            }
+
+            this.currentIndex--;
+            this.updateCarousel();
+        }
+    }));
+});

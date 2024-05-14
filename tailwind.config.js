@@ -6,6 +6,7 @@ const themeColors = {
         darkest: "var(--color-theme-darkest)",
     },
     secondary: {
+        lighter: "var(--color-alt-lighter)",
         DEFAULT: "var(--color-alt)",
         'bottom-bar': "var(--color-alt-bottom-bar)",
     },

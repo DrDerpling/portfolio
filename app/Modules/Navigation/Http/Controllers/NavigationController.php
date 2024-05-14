@@ -72,12 +72,42 @@ class NavigationController extends Controller
             $history[0]->is_active = true;
         }
 
+        $totalProjects = 10;
+        $projects = [];
+        $randomImages = [
+            'https://dummyimage.com/300.png/09f/fff',
+            'https://dummyimage.com/300.png/kadjdaskl',
+            'https://dummyimage.com/300.png/ababab',
+            'https://dummyimage.com/300.png/ababab',
+            'https://dummyimage.com/300.png/asdfg',
+            'https://dummyimage.com/300.png/qwerty',
+            'https://dummyimage.com/300.png/123456',
+        ];
+        for ($i = 0; $i < $totalProjects; $i++) {
+            $totalBadges = fake()->numberBetween(1, 5);
+            $badges = fake()->words($totalBadges);
+            $image = $randomImages[array_rand($randomImages)];
+            $url = fake()->url();
+
+            $projects[] = [
+                'id' => $i + 1,
+                'title' => 'Project ' . ($i + 1),
+                'description' => fake()->text(300),
+                'image' => $image,
+                'badges' => $badges,
+                'url' => $url
+            ];
+        }
+
+//        dd($projects);
+
         return view(
             'pages.components',
             [
                 'page' => $page,
                 'skills' => $this->skillService->getList(Skill::class, $forceNew),
-                'history' => $history
+                'history' => $history,
+                'projects' => $projects,
             ]
         );
     }
