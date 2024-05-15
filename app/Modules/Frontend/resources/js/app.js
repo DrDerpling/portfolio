@@ -52,43 +52,76 @@ window.addEventListener("resize", calculateLineNumbers);
 document.addEventListener("livewire:navigated", calculateLineNumbers);
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('projectSlider', (projects = []) => ({
-        projects: projects,
+    Alpine.data('slider', () => ({
         currentIndex: 0,
+        totalSlides: 0,
+        firstChild: null,
+        container: null,
+        visibleSlides: 0,
 
         init() {
+            this.container = this.$refs.container;
+            this.totalSlides = this.container.querySelectorAll('div.snap-start').length;
+            this.firstChild = this.container.querySelector('div.snap-start');
+            this.visibleSlides = this.countVisibleSlides();
             this.updateCarousel();
+
+            window.addEventListener('resize', () => {
+                this.visibleSlides = this.countVisibleSlides();
+                this.updateCarousel();
+            });
         },
 
         updateCarousel() {
-            const container = this.$refs.container;
-
-            // Select the first div in the container
-            const div = container.querySelector('div');
-
-            if (!div) {
+            if (!this.firstChild) {
+                console.warn('No slides found, so the slider cannot be updated.');
                 return;
             }
 
-            container.scrollLeft = this.currentIndex * div.offsetWidth;
+            const index = this.currentIndex  * this.visibleSlides;
+            const showedSlides = (this.currentIndex + 1) * this.visibleSlides;
+            this.container.scrollLeft = index * this.firstChild.offsetWidth;
+
+            if (showedSlides >= this.totalSlides) {
+                this.currentIndex = index;
+            }
+        },
+
+        countVisibleSlides() {
+            const slides = this.container.querySelectorAll('div.snap-start');
+            let visibleCount = 0;
+            const containerRect = this.container.getBoundingClientRect();
+
+            slides.forEach(slide => {
+                let rect = slide.getBoundingClientRect();
+                if (rect.left >= containerRect.left && rect.right <= containerRect.right) {
+                    visibleCount++;
+                }
+            });
+
+            return visibleCount;
         },
 
         next() {
-            if (this.currentIndex > this.projects.length - 1) {
-                return;
+            if (this.currentIndex < this.totalSlides - 1) {
+                this.currentIndex++;
+                this.updateCarousel();
+            } else {
+                // Optionally loop back to the first slide
+                this.currentIndex = 0;
+                this.updateCarousel();
             }
-
-            this.currentIndex++;
-            this.updateCarousel();
         },
 
         prev() {
-            if (this.currentIndex <= 0) {
-                return;
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+                this.updateCarousel();
+            } else {
+                // Optionally loop back to the last slide
+                this.currentIndex = this.totalSlides - 1;
+                this.updateCarousel();
             }
-
-            this.currentIndex--;
-            this.updateCarousel();
         }
     }));
 });

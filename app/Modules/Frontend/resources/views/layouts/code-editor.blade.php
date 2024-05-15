@@ -7,7 +7,7 @@
     @vite('app/Modules/Frontend/resources/css/app.css')
     @livewireStyles
 </head>
-<body class="w-full text-primary-content bg-primary overflow-hidden">
+<body class="text-primary-content bg-primary overflow-hidden">
 <div class="flex flex-col h-screen">
     <div class="flex flex-1n">
         <x-navigation-navbar/>
@@ -24,7 +24,7 @@
             <main x-data="{}" @click="$dispatch('close-sidebar')" class="flex flex-1 overflow-y-auto transition-colors duration-1000">
                 <x-line-numbers line-height="25" height="90"/>
                 <div class="ml-8 flex-1">
-                    <div class="p-8 pb-40  container mx-auto">
+                    <div class="p-4 lg:p-8 pb-20 lg:pb-40 container mx-auto">
                         @yield('content')
                     </div>
                 </div>

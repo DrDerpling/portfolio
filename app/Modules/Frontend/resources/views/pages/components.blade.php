@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="lg:w-1/4">
+            <div class="lg:w-1/4 max-h-16">
                 <h2 class="text-3xl pb-4">Navbar</h2>
                 <div>
                     <x-navigation-navbar/>
@@ -41,7 +41,7 @@
         <div class="pt-4 lg:space-x-4 lg:space-y-0 space-y-2 flex flex-col lg:flex-row">
             <div class="w-full">
                 <h2 class="text-3xl pb-4">Projects</h2>
-                <x-project-overview :projects="$projects"/>
+                <x-project-slider :projects="$projects"/>
             </div>
         </div>
 @endsection
