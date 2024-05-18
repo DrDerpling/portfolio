@@ -1,8 +1,8 @@
 <div x-data="{ open: false }"
      @open-sidebar.window="open = true"
      @close-sidebar.window="open = false"
-     class="fixed inset-0 z-50 flex md:hidden"
-     :class="{ 'hidden': !open }">
+     class="fixed inset-0 z-50 flex md:hidden transition-opacity"
+     :class="{ 'opacity-0 pointer-events-none': !open, 'opacity-100 pointer-events-auto': open }">
 
     <!-- Overlay -->
     <div class="fixed inset-0 bg-black bg-opacity-50"

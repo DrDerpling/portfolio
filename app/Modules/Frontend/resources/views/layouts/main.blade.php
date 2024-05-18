@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Layout</title>
+    <title>Dennis Portfolio</title>
     @vite('app/Modules/Frontend/resources/css/app.css')
     @livewireStyles
 </head>
     <body class="bg-primary h-screen overflow-hidden text-primary-content">
 
         <!-- Topbar -->
-        <header class="flex bg-primary-darkest text-white">
+        <header class="flex bg-primary-darkest ease-in transition-colors">
             <x-navigation-top-bar/>
         </header>
 
         <div class="flex flex-1 overflow-hidden">
 
             <!-- Sidebar -->
-            <aside class="bg-primary-darker w-64 p-4 hidden md:block flex-shrink-0">
+            <aside class="bg-primary-darker w-64 p-4 hidden md:block flex-shrink-0 transition-colors">
                 <x-navigation-sidebar/>
             </aside>
 
