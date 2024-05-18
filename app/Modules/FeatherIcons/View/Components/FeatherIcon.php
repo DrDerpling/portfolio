@@ -13,7 +13,6 @@ class FeatherIcon extends Component
 {
     public function __construct(
         public string $name,
-        public string $className = 'w-5 h-5 text-gray-400',
     ) {
     }
 
@@ -35,7 +34,6 @@ class FeatherIcon extends Component
 
         return view('feathericons.icon', [
             'icon' => $extractedSvgContents,
-            'class' => $this->className,
         ]);
     }
 

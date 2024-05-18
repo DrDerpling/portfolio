@@ -21,7 +21,7 @@
             <button
                     class="border border-primary-darkest text-primary hover:bg-secondary hover:text-darkest hover:shadow-lg rounded-md px-4 py-2"
                     x-on:click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
-                <x-feather-icon name="chevron-left" className="h-6 w-6"/>
+                <x-feather-icon name="chevron-left" class="h-6 w-6"/>
             </button>
         </div>
         <template x-for="slide in slides" :key="slide">
@@ -38,7 +38,7 @@
             <button
                     class="border border-primary-darkest text-primary hover:bg-secondary hover:text-primary-lighter hover:shadow-lg rounded-md px-4 py-2"
                     x-on:click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
-                <x-feather-icon name="chevron-right" className="h-6 w-6"/>
+                <x-feather-icon name="chevron-right" class="h-6 w-6"/>
             </button>
         </div>
     </div>

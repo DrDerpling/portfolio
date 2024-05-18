@@ -23,7 +23,6 @@ const calculateLineNumbersCallback = (element) => {
     for (let i = 1; i <= numberOfLines; i++) {
         const lineSpan = document.createElement('div');
         lineSpan.textContent = `${i}`;
-        lineSpan.classList.add('text-right');
         element.appendChild(lineSpan);
     }
 }

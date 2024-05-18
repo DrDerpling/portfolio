@@ -11,7 +11,7 @@
     <a wire:navigate.hover
        class="flex items-center space-x-1 {{ $isActiveClass }} {{ $hiddenClass }}"
        href="{{ $link->getUrl() }}">
-        <x-feather-icon name="{{ $link->icon }}" className="h-5 w-5 stroke-2 text-primary-darker"/>
+        <x-feather-icon name="{{ $link->icon }}" class="h-5 w-5 stroke-2 text-primary-darker"/>
         <span>
             {{ $link->name }}
         </span>

@@ -12,11 +12,11 @@
 
         <div class="{{ $containerClass }} flex items-center px-2 py-1">
             <a href="{{ $link->getUrl() }}" class="flex items-center" wire:navigate.hover>
-                <x-feather-icon name="{{ $link->icon }}" className="h-4 w-4 mr-2"/>
+                <x-feather-icon name="{{ $link->icon }}" class="h-4 w-4 mr-2"/>
                 {{ $link->name }}
             </a>
             <button class="{{ $buttonClass }} ml-1" wire:click="removeItem(@js($index))">
-                <x-feather-icon name="x" className="h-5 w-5 stroke-1 hover:stroke-2"/>
+                <x-feather-icon name="x" class="h-5 w-5 stroke-1 hover:stroke-2"/>
             </button>
         </div>
     @endforeach
