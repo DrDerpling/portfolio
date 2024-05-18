@@ -10,7 +10,7 @@
      */
 @endphp
 
-<div>
+<div class="mx-auto">
     <img src="{{ $project['image'] }}" alt="Project Gezond App Interface"
          class="h-48 object-contain w-full">
     <div class="p-4 bg-primary-darker">
