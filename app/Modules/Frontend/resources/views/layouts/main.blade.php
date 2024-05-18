@@ -10,14 +10,14 @@
     <body class="bg-primary h-screen overflow-hidden text-primary-content">
 
         <!-- Topbar -->
-        <header class="flex bg-primary-darkest ease-in transition-colors">
+        <header class="flex bg-primary-darkest">
             <x-navigation-top-bar/>
         </header>
 
         <div class="flex flex-1 overflow-hidden">
 
             <!-- Sidebar -->
-            <aside class="bg-primary-darker w-64 p-4 hidden md:block flex-shrink-0 transition-colors">
+            <aside class="bg-primary-darker w-64 p-4 hidden md:block flex-shrink-0">
                 <x-navigation-sidebar/>
             </aside>
 
