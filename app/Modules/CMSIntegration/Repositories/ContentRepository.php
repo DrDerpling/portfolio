@@ -12,45 +12,35 @@ use InvalidArgumentException;
 abstract class ContentRepository
 {
     /**
-     * Retrieve an entity by its primary ID using the specified model class.
+     * The model class to use for the repository.
      *
-     * @param int $id The primary key ID of the entity.
-     * @param class-string<Model> $modelClass The model class to use for the query.
-     * @return Model The model instance retrieved.
-     * @throws InvalidArgumentException If the model class is invalid.
+     * @var class-string<Model>
      */
-    public function get(int $id, string $modelClass): Model
-    {
-        $this->validateModelClass($modelClass);
+    protected string $modelClass;
 
-        return $modelClass::findOrFail($id);
+    public function get(int $id): Model
+    {
+        $this->validateModelClass($this->modelClass);
+
+        return $this->modelClass::findOrFail($id);
     }
 
-    /**
-     * @template T of Model
-     * @param int $cmsId
-     * @param class-string<T> $modelClass
-     * @return T
-     * @throws InvalidArgumentException If the model class is invalid.
-     */
-    public function getByCmsId(int $cmsId, string $modelClass): Model
+    public function getByCmsId(int $cmsId): Model
     {
-        $this->validateModelClass($modelClass);
+        $this->validateModelClass($this->modelClass);
 
-        return $modelClass::where('cms_id', $cmsId)->firstOrFail();
+        return $this->modelClass::where('cms_id', $cmsId)->firstOrFail();
     }
 
     /**
      * Abstract method to update an existing entity or create a new one based on provided data.
      * This method needs to be implemented in subclass repositories to handle model-specific details.
      *
-     * @template T of Model
      * @param array $data The data to update or create the entity with.
-     * @param class-string<T> $modelClass The model class to use for the operation.
-     * @return T The updated or newly created model instance.
+     * @return Model The updated or newly created model instance.
      * @throws InvalidArgumentException If the model class is invalid.
      */
-    abstract public function updateOrCreate(array $data, string $modelClass);
+    abstract public function updateOrCreate(array $data): Model;
 
     /**
      * Utility method to filter and prepare data for persistence.
@@ -79,14 +69,10 @@ abstract class ContentRepository
     }
 
     /**
-     * Returns
-     *
-     * @template T of Model
-     * @param class-string<T> $modelClass
-     * @return Collection<T>
+     * @return Collection<Model>
      */
-    public function getList(string $modelClass): Collection
+    public function getList(): Collection
     {
-        return $modelClass::orderBy('sort')->get();
+        return $this->modelClass::orderBy('sort')->get();
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Modules\Skill\Services;
 
+use App\Modules\CMSIntegration\Api\Directus;
 use App\Modules\CMSIntegration\Services\CMSDataService;
-use App\Modules\CMSIntegration\Services\DirectusCollection;
 use App\Modules\Framework\AbstractDataObject;
 use App\Modules\Skill\DataObjects\SkillDataObject;
 use App\Modules\Skill\Models\Skill;
@@ -29,7 +29,7 @@ class SkillService extends CMSDataService
     {
         $item->set('cms_id', $item->get('id'));
 
-        return $this->skillRepository->updateOrCreate($item->toArray(), Skill::class);
+        return $this->skillRepository->updateOrCreate($item->toArray());
     }
 
     /**
@@ -46,7 +46,7 @@ class SkillService extends CMSDataService
             $disk = Storage::disk('public');
             $fileName = 'skills/' . Str::slug($item->getName()) . '.webp'; // Don't really care if this overwrites
 
-            DirectusCollection::collection('assets')
+            Directus::collection('assets')
                 ->addQueryParameter('fit', 'inside')
                 ->addQueryParameter('width', '100')
                 ->addQueryParameter('height', '100')

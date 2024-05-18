@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\CMSIntegration\Services;
 
+use App\Modules\CMSIntegration\Api\Directus;
 use App\Modules\CMSIntegration\Repositories\ContentRepository;
 use App\Modules\Framework\AbstractDataObject;
 use Illuminate\Database\Eloquent\Model;
@@ -31,19 +32,13 @@ abstract class CMSDataService
      */
     abstract protected function getFromDirectus(int $id = null);
 
-    /**
-     * @template T of Model
-     * @param class-string<T> $modelClass
-     * @param bool $forceNew
-     * @return T[]
-     */
-    public function getList(string $modelClass, bool $forceNew = false): array
+    public function getList(bool $forceNew = false): array
     {
         if ($forceNew) {
             return $this->getFromDirectus();
         }
 
-        $items = $this->repository->getList($modelClass);
+        $items = $this->repository->getList();
 
         if ($items->isEmpty()) {
             return $this->getFromDirectus();
@@ -66,7 +61,7 @@ abstract class CMSDataService
         }
 
         try {
-            return $this->repository->getByCmsId($id, $modelClass);
+            return $this->repository->getByCmsId($id);
         } catch (\Exception $e) {
             return $this->getFromDirectus($id);
         }
@@ -78,10 +73,10 @@ abstract class CMSDataService
     protected function fetchFromDirectus(string $collection, int $id = null): array
     {
         if ($id) {
-            return DirectusCollection::collection($collection)->find($id);
+            return Directus::collection($collection)->find($id);
         }
 
-        return DirectusCollection::collection($collection)->get();
+        return Directus::collection($collection)->get();
     }
 
     /**

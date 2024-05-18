@@ -12,11 +12,15 @@ use InvalidArgumentException;
 class SkillRepository extends ContentRepository
 {
     /**
+     * @var class-string<Skill>
+     */
+    protected string $modelClass = Skill::class;
+
+    /**
      * @param array $data
-     * @param class-string<Skill> $modelClass
      * @return Skill
      */
-    public function updateOrCreate(array $data, string $modelClass): Skill
+    public function updateOrCreate(array $data): Skill
     {
         $hydratedData = $this->prepareData($data, ['name', 'logo', 'proficiency', 'cms_id', 'sort']);
 
@@ -26,6 +30,6 @@ class SkillRepository extends ContentRepository
             throw new InvalidArgumentException('cms_id is required');
         }
 
-        return $modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
+        return $this->modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
     }
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Modules\Page\Services;
 
+use App\Modules\CMSIntegration\Api\Directus;
 use App\Modules\CMSIntegration\Services\CMSDataService;
-use App\Modules\CMSIntegration\Services\DirectusCollection;
 use App\Modules\Framework\AbstractDataObject;
 use App\Modules\Page\DataObjects\Page as PageData;
 use App\Modules\Page\Models\Page;
@@ -21,7 +21,7 @@ class PageService extends CMSDataService
 
     protected function getFromDirectus(int $id = null): Page
     {
-        $page = DirectusCollection::collection('pages')->find($id);
+        $page = Directus::collection('pages')->find($id);
         $page['cms_id'] = $page['id'];
 
         return $this->saveItem(new PageData($page));
@@ -29,6 +29,6 @@ class PageService extends CMSDataService
 
     protected function saveItem(AbstractDataObject $item): Page
     {
-        return $this->pageRepository->updateOrCreate($item->toArray(), Page::class);
+        return $this->pageRepository->updateOrCreate($item->toArray());
     }
 }

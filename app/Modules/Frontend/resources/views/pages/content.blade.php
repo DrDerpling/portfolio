@@ -2,8 +2,6 @@
 
 @section('content')
     <article class="prose lg:prose-xl">
-        {!!
-            $page->content
-        !!}
+        {!! $page->content !!}
     </article>
 @endsection

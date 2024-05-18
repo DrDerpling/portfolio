@@ -6,12 +6,11 @@ namespace App\Modules\Navigation\Http\Controllers;
 
 use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Models\LinkItem;
-use App\Modules\Navigation\Repositories\NavigationRepository;
+use App\Modules\Navigation\Repositories\LinkItemRepository;
 use App\Modules\Navigation\Services\LinkTreeService;
 use App\Modules\Page\Models\Page;
 use App\Modules\Page\Services\PageService;
 use App\Modules\Page\Types\PageTypes;
-use App\Modules\Skill\Models\Skill;
 use App\Modules\Skill\Services\SkillService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,7 +18,7 @@ use Illuminate\View\View;
 class NavigationController extends Controller
 {
     public function __construct(
-        private NavigationRepository $navigationRepository,
+        private LinkItemRepository $itemRepository,
         private PageService $pageService,
         private SkillService $skillService,
         private LinkTreeService $linkTreeService
@@ -36,7 +35,7 @@ class NavigationController extends Controller
             $path = PageTypes::HOME;
         }
 
-        $linkItem = $this->navigationRepository->getByUrl($path);
+        $linkItem = $this->itemRepository->getByUrl($path);
 
         if ($linkItem === null && $path !== PageTypes::HOME) {
             abort(404);
@@ -69,7 +68,7 @@ class NavigationController extends Controller
         /**
          * @var LinkItem[] $history
          */
-        $history = $this->navigationRepository->getList(LinkItem::class)->take(2)->all();
+        $history = $this->itemRepository->getList()->take(2)->all();
 
         if (count($history) > 0) {
             $history[0]->is_active = true;
@@ -78,13 +77,13 @@ class NavigationController extends Controller
         $totalProjects = 10;
         $projects = [];
         $randomImages = [
-            'https://dummyimage.com/300.png/09f/fff',
-            'https://dummyimage.com/300.png/kadjdaskl',
-            'https://dummyimage.com/300.png/ababab',
-            'https://dummyimage.com/300.png/ababab',
-            'https://dummyimage.com/300.png/asdfg',
-            'https://dummyimage.com/300.png/qwerty',
-            'https://dummyimage.com/300.png/123456',
+            'https://dummyimage.com/500x300.png/09f/fff',
+            'https://dummyimage.com/500x300.png/kadjdaskl',
+            'https://dummyimage.com/500x300.png/ababab',
+            'https://dummyimage.com/500x300.png/ababab',
+            'https://dummyimage.com/500x300.png/asdfg',
+            'https://dummyimage.com/500x300.png/qwerty',
+            'https://dummyimage.com/500x300.png/123456',
         ];
         for ($i = 0; $i < $totalProjects; $i++) {
             $totalBadges = fake()->numberBetween(1, 5);
@@ -106,7 +105,7 @@ class NavigationController extends Controller
             'pages.components',
             [
                 'page' => $page,
-                'skills' => $this->skillService->getList(Skill::class, $forceNew),
+                'skills' => $this->skillService->getList($forceNew),
                 'history' => $history,
                 'projects' => $projects,
             ]

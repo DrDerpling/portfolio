@@ -13,7 +13,7 @@
 <div class="bg-primary-darker flex flex-col h-full">
     <div class="flex-grow">
         <img src="{{ $project['image'] }}" alt="{{ $project['title'] }} Interface"
-             class="h-48 w-full object-contain bg-primary-darkest"> <!-- Ensure the image fills the width and is contained properly -->
+             class="h-48 w-full object-cover bg-primary-darkest"> <!-- Ensure the image fills the width and is contained properly -->
         <div class="p-4">
             <h2 class="font-semibold text-xl text-primary-lighter mb-2">{{ $project['title'] }}</h2>
             <p class="text-primary-lighter text-base mb-4 truncate">{{ Str::limit($project['description'], 300) }}</p> <!-- Use 'truncate' if you prefer it over 'overflow-hidden' for better text handling -->

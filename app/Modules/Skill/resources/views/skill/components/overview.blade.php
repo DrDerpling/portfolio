@@ -8,7 +8,7 @@
             <div class="mb-4">
                 <h3 class="font-semibold text-lg mb-2">{{ $groups }}</h3>
                 <!-- Responsive grid setup: 2 columns on mobile, 5 on desktop -->
-                <div class="grid grid-cols-2  md:grid-cols-4  lg:grid-cols-6 gap-2 md:gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-2">
                     @foreach($skills as $skill)
                         <div class="flex flex-col justify-between text-center shadow-lg">
                             <div class="bg-primary-darker p-2">

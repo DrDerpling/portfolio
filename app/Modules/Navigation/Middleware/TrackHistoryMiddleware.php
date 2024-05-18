@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Navigation\Middleware;
 
-use App\Modules\Navigation\Repositories\NavigationRepository;
+use App\Modules\Navigation\Repositories\LinkItemRepository;
 use App\Modules\Navigation\Services\HistoryCacheManager;
 use Closure;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class TrackHistoryMiddleware
 {
     public function __construct(
         private HistoryCacheManager $historyCacheManager,
-        private NavigationRepository $navigationRepository
+        private LinkItemRepository $linkItemRepository
     ) {
     }
 
@@ -25,7 +25,7 @@ class TrackHistoryMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $linkItem = $this->navigationRepository->getByUrl($request->url());
+        $linkItem = $this->linkItemRepository->getByUrl($request->url());
 
         if ($linkItem === null) {
             return $next($request);
