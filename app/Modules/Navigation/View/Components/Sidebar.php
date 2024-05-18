@@ -11,8 +11,9 @@ use Closure;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use JsonException;
 
-class Navbar extends Component
+class Sidebar extends Component
 {
     public bool $forceRefresh = false;
 
@@ -25,9 +26,13 @@ class Navbar extends Component
     }
 
 
+    /**
+     * @throws GuzzleException
+     * @throws JsonException
+     */
     public function render(): View|Closure|string
     {
-        return view('navigation.components.navbar', [
+        return view('navigation.components.sidebar', [
             'links' => $this->getNavLinks(),
             'forceVisible' => $this->forceVisible,
         ]);
@@ -36,7 +41,7 @@ class Navbar extends Component
     /**
      * @return array<LinkGroup|LinkItem>
      * @throws GuzzleException
-     * @throws \JsonException
+     * @throws JsonException
      */
     private function getNavLinks(): array
     {

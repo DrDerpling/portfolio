@@ -1,4 +1,4 @@
-@extends('layouts.code-editor')
+@extends('layouts.main')
 
 @section('content')
     <h1 class="text-5xl">Hello Travel!</h1>

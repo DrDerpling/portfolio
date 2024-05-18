@@ -21,8 +21,9 @@ const calculateLineNumbersCallback = (element) => {
     // Calculate how many lines fit within the container
     const numberOfLines = Math.floor(containerHeight / lineHeight);
     for (let i = 1; i <= numberOfLines; i++) {
-        const lineSpan = document.createElement('span');
+        const lineSpan = document.createElement('div');
         lineSpan.textContent = `${i}`;
+        lineSpan.classList.add('text-right');
         element.appendChild(lineSpan);
     }
 }

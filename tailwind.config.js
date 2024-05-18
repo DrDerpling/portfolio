@@ -31,7 +31,9 @@ export default {
     ],
     theme: {
         extend: {
-            textColor: {
+            height: {
+                'content': 'calc(100vh - 105px)',
+            }, textColor: {
                 primary: themeColors.text.primary,
                 secondary: themeColors.text.secondary
             },

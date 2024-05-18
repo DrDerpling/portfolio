@@ -2,7 +2,7 @@
     /** @var \App\Modules\Navigation\Models\LinkItem[] $history */
 @endphp
 
-<div class="flex lg:items-end h-16 min-h-16 overflow-hidden">
+<div class="flex md:items-end h-16 min-h-16 overflow-hidden">
     @foreach($history as $index => $link)
         @php
             $isActive = $link->is_active;

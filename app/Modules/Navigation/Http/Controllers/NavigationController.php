@@ -7,6 +7,7 @@ namespace App\Modules\Navigation\Http\Controllers;
 use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Models\LinkItem;
 use App\Modules\Navigation\Repositories\NavigationRepository;
+use App\Modules\Navigation\Services\LinkTreeService;
 use App\Modules\Page\Models\Page;
 use App\Modules\Page\Services\PageService;
 use App\Modules\Page\Types\PageTypes;
@@ -20,7 +21,8 @@ class NavigationController extends Controller
     public function __construct(
         private NavigationRepository $navigationRepository,
         private PageService $pageService,
-        private SkillService $skillService
+        private SkillService $skillService,
+        private LinkTreeService $linkTreeService
     ) {
     }
 
@@ -28,6 +30,7 @@ class NavigationController extends Controller
     {
         $path = $request->path();
         $forceNew = (bool)$request->query('force_new');
+        $links = $this->linkTreeService->getTree($forceNew);
 
         if ($path === '/') {
             $path = PageTypes::HOME;
@@ -53,7 +56,7 @@ class NavigationController extends Controller
             case PageTypes::CONTENT:
                 return view('pages.content', ['page' => $page]);
             case PageTypes::HOME:
-                return view('pages.home', ['page' => $page]);
+                return view('pages.home', ['page' => $page, 'links' => $links]);
             case PageTypes::COMPONENTS:
                 return $this->resolveComponentsPage($page, $forceNew);
             default:

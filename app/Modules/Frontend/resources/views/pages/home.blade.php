@@ -1,4 +1,4 @@
-@extends('layouts.code-editor')
+@extends('layouts.main')
 
 @section('content')
     {!!
