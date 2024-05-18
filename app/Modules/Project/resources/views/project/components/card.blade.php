@@ -14,7 +14,7 @@
     <div>
         <img src="{{ $project['image'] }}" alt="Project Gezond App Interface"
              class="h-48 object-contain w-full bg-primary-darkest">
-        <div class="px-4">
+        <div class="p-4">
             <h2 class="font-semibold text-xl text-primary-lighter mb-2">{{ $project['title'] }}</h2>
             <p class="text-primary-lighter text-base mb-4 overflow-hidden">
                 {{ Str::limit($project['description'], 300) }}
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="mt-auto px-4">
+    <div class="mt-auto p-4">
         <div class="flex flex-wrap gap-1 items-start mb-4 overflow-hidden">
             @foreach($project['badges'] as $badge)
                 <span class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#{{ $badge }}</span>
