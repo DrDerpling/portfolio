@@ -8,7 +8,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="hidden lg:flex justify-between py-4">
+        <div class="hidden lg:flex justify-between py-2">
             <button @click="prev">
                 <x-feather-icon name="chevron-left" className="h-6 w-6"/>
             </button>
