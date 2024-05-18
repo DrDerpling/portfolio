@@ -13,10 +13,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--color-theme-darkest); /* Customize this color */
+    background-color: var(--color-theme-lighter);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color:  var(--color-theme-darker) /* Customize this color */
+    background-color:  var(--color-theme-darker);
+    opacity: 0.5;
 }
