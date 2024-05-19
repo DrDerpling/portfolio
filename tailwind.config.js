@@ -12,6 +12,7 @@ const themeColors = {
     },
     text: {
         primary: {
+            lightest: "var(--color-text-lightest)",
             lighter: "var(--color-text-lighter)",
             DEFAULT: "var(--color-text)",
             darker: "var(--color-text-darker)",

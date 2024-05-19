@@ -8,11 +8,11 @@
                 </div>
             @endforeach
         </div>
-        <div class="hidden lg:flex justify-between py-2">
-            <button @click="prev">
+        <div x-ref="navigation" class="hidden lg:flex justify-between py-2">
+            <button  @click="previousSlide">
                 <x-feather-icon name="chevron-left" class="h-6 w-6"/>
             </button>
-            <button @click="next">
+            <button @click="previousSlide">
                 <x-feather-icon name="chevron-right" class="h-6 w-6"/>
             </button>
         </div>

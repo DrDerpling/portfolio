@@ -13,9 +13,9 @@
     </div>
 
     <div class="mt-auto p-4">
-        <div class="flex flex-wrap gap-2 mb-4"> <!-- Increased gap for better visual separation -->
-            @foreach($project->skills as $skill)
-                <span class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold ">#{{ $skill->name }}</span>
+        <div class="flex flex-wrap gap-2 mb-4">
+            @foreach($project->skills->take(4) as $skill)
+                <span class="bg-primary-lighter text-primary-lightest rounded-full px-3 py-1 text-sm font-semibold ">#{{ $skill->name }}</span>
             @endforeach
         </div>
         <div class="flex justify-between items-center">

@@ -57,19 +57,38 @@ document.addEventListener('alpine:init', () => {
         totalSlides: 0,
         firstChild: null,
         container: null,
+        navigation: null,
         visibleSlides: 0,
 
         init() {
             this.container = this.$refs.container;
+            this.navigation = this.$refs.navigation;
             this.totalSlides = this.container.querySelectorAll('div.snap-start').length;
             this.firstChild = this.container.querySelector('div.snap-start');
             this.visibleSlides = this.countVisibleSlides();
             this.updateCarousel();
+            this.hideNavigation();
 
             window.addEventListener('resize', () => {
+                this.hideNavigation();
                 this.visibleSlides = this.countVisibleSlides();
                 this.updateCarousel();
             });
+        },
+
+        hideNavigation() {
+            if (this.navigation === null) {
+                return;
+            }
+
+            if (this.totalSlides > this.visibleSlides) {
+                this.navigation.classList.remove('hidden');
+                this.navigation.classList.add('lg:flex');
+                return;
+            }
+
+            this.navigation.classList.add('hidden');
+            this.navigation.classList.remove('lg:flex');
         },
 
         updateCarousel() {
@@ -102,7 +121,7 @@ document.addEventListener('alpine:init', () => {
             return visibleCount;
         },
 
-        next() {
+        nextSlide() {
             if (this.currentIndex < this.totalSlides - 1) {
                 this.currentIndex++;
                 this.updateCarousel();
@@ -113,12 +132,11 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
-        prev() {
+        previousSlide() {
             if (this.currentIndex > 0) {
                 this.currentIndex--;
                 this.updateCarousel();
             } else {
-                // Optionally loop back to the last slide
                 this.currentIndex = this.totalSlides - 1;
                 this.updateCarousel();
             }

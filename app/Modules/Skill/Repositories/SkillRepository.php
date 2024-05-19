@@ -32,4 +32,13 @@ class SkillRepository extends ContentRepository
 
         return $this->modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
     }
+
+    /**
+     * @param int[] $cmsIds
+     * @return int[]
+     */
+    public function getSkillIds(array $cmsIds): array
+    {
+        return $this->modelClass::whereIn('cms_id', $cmsIds)->pluck('id', 'cms_id')->toArray();
+    }
 }

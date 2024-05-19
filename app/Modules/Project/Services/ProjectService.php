@@ -40,7 +40,19 @@ class ProjectService extends CMSDataService
     protected function getFromDirectus(int $id = null)
     {
         if ($id === null) {
-            $data = Directus::collection('projects')->get();
+            $data = Directus::collection('projects')->fields(
+                'id',
+                'hero',
+                'name',
+                'image',
+                'status',
+                'description',
+                'short_description',
+                'content',
+                'cms_id',
+                'url',
+                'skills.*',
+            )->get();
 
             $items = array_map(function ($item) {
                 return $this->createDataObject($item);
@@ -75,6 +87,15 @@ class ProjectService extends CMSDataService
             ->download($item->getHero(), $disk, $fileName);
 
         $item->set('image', $fileName);
+
+        $skills = array_map(function ($skill) {
+            return [
+                'id' => $skill['skills_id'],
+                'sort' => $skill['sort'],
+            ];
+        }, $item->get('skills'));
+
+        $item->set('skills', $skills);
 
         return $item;
     }
