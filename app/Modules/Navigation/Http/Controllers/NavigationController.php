@@ -51,7 +51,7 @@ class NavigationController extends Controller
          * Lazy load page model
          * @var Page $page
          */
-        $page = $this->pageRepository->get($linkItem->page_id);
+        $page = $this->pageRepository->getByCmsId($linkItem->page_id);
 
         switch ($page->type) {
             case PageTypes::CONTENT:
