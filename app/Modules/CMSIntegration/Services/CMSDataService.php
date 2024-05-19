@@ -22,7 +22,7 @@ abstract class CMSDataService
      * @param AbstractDataObject $item
      * @return Model
      */
-    abstract protected function saveItem(AbstractDataObject $item): Model;
+    abstract protected function saveItem(AbstractDataObject $item);
 
     /**
      * Abstract method to fetch data from Directus API.
@@ -48,13 +48,11 @@ abstract class CMSDataService
     }
 
     /**
-     * @template T of Model
      * @param int $id
-     * @param class-string<T> $modelClass
      * @param bool $forceNew
      * @return Model
      */
-    public function find(int $id, string $modelClass, bool $forceNew = false): Model
+    public function find(int $id, bool $forceNew = false): Model
     {
         if ($forceNew) {
             return $this->getFromDirectus($id);

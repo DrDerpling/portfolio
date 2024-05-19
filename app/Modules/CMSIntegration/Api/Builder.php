@@ -9,7 +9,7 @@ use Illuminate\Filesystem\FilesystemAdapter;
 
 /**
  * @method void download(string $id, ?FilesystemAdapter $disk, string $fileName) Download an asset.
- * @method array get(): array Get all items. Only works on Items.
+ * @method array get() array Get all items. Only works on Items.
  */
 abstract class Builder
 {

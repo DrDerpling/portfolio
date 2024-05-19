@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Modules\Project\View;
 
+use App\Modules\Project\Models\Project;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class ProjectCard extends Component
 {
-    public array $project;
+    public Project $project;
 
-    public function __construct(array $project)
+    public function __construct(Project $project)
     {
         $this->project = $project;
     }

@@ -21,10 +21,13 @@ class ProjectRepository extends ContentRepository
         $hydratedData = $this->prepareData($data, [
             'hero_image',
             'name',
+            'image',
             'status',
             'description',
             'short_description',
             'content',
+            'cms_id',
+            'url',
         ]);
 
         return $this->modelClass::updateOrCreate(

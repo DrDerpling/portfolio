@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Modules\Navigation\Services;
 
 use App\Modules\CMSIntegration\Api\Directus;
-use App\Modules\CMSIntegration\Api\Items;
 use App\Modules\CMSIntegration\Services\CMSDataService;
 use App\Modules\Framework\AbstractDataObject;
 use App\Modules\Navigation\DataObjects\LinkGroup as LinkGroupDataObject;
@@ -67,10 +66,7 @@ class LinkTreeService extends CMSDataService
         $directusItems = array_map(function (array $item) {
             $linkItemIds = array_values($item['link_items']);
 
-            /** @var Items $collection */
-            $collection = Directus::collection('link_items');
-
-            $items = $collection
+            $items = Directus::collection('link_items')
                 ->where('id', '_in', implode(',', $linkItemIds))
                 ->fields('id', 'name', 'page.slug', 'page.id', 'icon.key', 'sort', 'status', 'link_group')
                 ->get();
