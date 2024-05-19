@@ -10,9 +10,9 @@ use App\Modules\CMSIntegration\Factories\ContextFactory;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Framework\DataObject;
-use App\Modules\Navigation\DataObjects\LinkItem as LinkItemDataObject;
 use App\Modules\Navigation\Models\LinkGroup as LinkGroupModel;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
+use Illuminate\Database\Eloquent\Model;
 
 class LinkGroupRepository extends DirectusRepository
 {
@@ -53,9 +53,9 @@ class LinkGroupRepository extends DirectusRepository
 
     /**
      * @param DataObject $item
-     * @return LinkGroupModel
+     * @return Model
      */
-    public function updateOrCreate(DataObject $item): LinkGroupModel
+    public function updateOrCreate(DataObject $item): Model
     {
         $cmsId = $item->get('cms_id');
 
@@ -63,7 +63,6 @@ class LinkGroupRepository extends DirectusRepository
         $linkGroup = $this->getModelQuery()->updateOrCreate(['cms_id' => $cmsId], $item->getData());
 
         if ($item->has('children')) {
-            /** @var LinkItemDataObject $child */
             foreach ($item->get('children') as $child) {
                 $child->set('parent_id', $linkGroup->id);
                 $child->set('cms_id', $child->get('id'));
