@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace App\Modules\Navigation\Repositories;
 
+use App\Modules\CMSIntegration\Api\Directus;
 use App\Modules\CMSIntegration\Enums\StatusEnum;
-use App\Modules\CMSIntegration\Repositories\ContentRepository;
-use App\Modules\Navigation\DataObjects\LinkItem;
+use App\Modules\CMSIntegration\Factories\ContextFactory;
+use App\Modules\CMSIntegration\Repositories\Context;
+use App\Modules\CMSIntegration\Repositories\DirectusRepository;
+use App\Modules\Framework\DataObject;
+use App\Modules\Navigation\DataObjects\LinkItem as LinkItemDataObject;
 use App\Modules\Navigation\Models\LinkGroup as LinkGroupModel;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
 
-class LinkGroupRepository extends ContentRepository
+class LinkGroupRepository extends DirectusRepository
 {
-    /**
-     * @var class-string<LinkGroupModel>
-     */
-    protected string $modelClass = LinkGroupModel::class;
-
     public function __construct(private LinkItemRepository $linkItemRepository)
     {
     }
@@ -27,6 +26,10 @@ class LinkGroupRepository extends ContentRepository
      */
     public function getTree(bool $devMode): array
     {
+        if ($this->getContext()->isForceRefresh()) {
+            $this->getFromDirectus(); // I know its inefficient, I'm also lazy and don't care
+        }
+
         $statuses = [StatusEnum::PUBLISHED->value];
 
         if ($devMode) {
@@ -49,26 +52,50 @@ class LinkGroupRepository extends ContentRepository
     }
 
     /**
-     * @param array $data
+     * @param DataObject $item
      * @return LinkGroupModel
      */
-    public function updateOrCreate(array $data): LinkGroupModel
+    public function updateOrCreate(DataObject $item): LinkGroupModel
     {
-        $cmsId = $data['cms_id'];
+        $cmsId = $item->get('cms_id');
 
-        $hydratedData = $this->prepareData($data, ['name', 'children', 'status', 'sort', 'cms_id']);
-        $linkGroup = $this->modelClass::updateOrCreate(['cms_id' => $cmsId], $hydratedData);
+        /** @var LinkGroupModel $linkGroup */
+        $linkGroup = $this->getModelQuery()->updateOrCreate(['cms_id' => $cmsId], $item->getData());
 
-        if (isset($data['children'])) {
-            /** @var LinkItem $child */
-            foreach ($data['children'] as $child) {
+        if ($item->has('children')) {
+            /** @var LinkItemDataObject $child */
+            foreach ($item->get('children') as $child) {
                 $child->set('parent_id', $linkGroup->id);
                 $child->set('cms_id', $child->get('id'));
 
-                $this->linkItemRepository->updateOrCreate($child->toArray());
+                $this->linkItemRepository->updateOrCreate($child);
             }
         }
 
         return $linkGroup;
+    }
+
+    protected function prepareData(array $data): DataObject
+    {
+        $object = new DataObject($data);
+        $object->set('cms_id', $data['id']);
+
+        $linkItemIds = array_values($object->get('link_items'));
+
+        $items = Directus::collection('link_items')
+            ->where('id', '_in', implode(',', $linkItemIds))
+            ->fields('id', 'name', 'page.slug', 'page.id', 'icon.key', 'sort', 'status', 'link_group')
+            ->get();
+
+        $object->set('children', array_map(static function (array $item) {
+            return LinkItemRepository::buildLinkItemData($item);
+        }, $items));
+
+        return $object;
+    }
+
+    public function getContext(): Context
+    {
+        return ContextFactory::create(LinkGroupModel::class, collectionName: 'link_group');
     }
 }

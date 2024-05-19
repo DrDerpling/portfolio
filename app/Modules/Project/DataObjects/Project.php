@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Modules\Project\DataObjects;
 
-use App\Modules\Framework\AbstractDataObject;
+use App\Modules\Framework\DataObject;
 
-class Project extends AbstractDataObject
+class Project extends DataObject
 {
     public function getName(): string
     {

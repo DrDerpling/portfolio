@@ -6,7 +6,7 @@ namespace App\Modules\Navigation\View\Components;
 
 use App\Modules\Navigation\Models\LinkGroup;
 use App\Modules\Navigation\Models\LinkItem;
-use App\Modules\Navigation\Services\LinkTreeService;
+use App\Modules\Navigation\Repositories\LinkGroupRepository;
 use Closure;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\View\View;
@@ -45,6 +45,6 @@ class Sidebar extends Component
      */
     private function getNavLinks(): array
     {
-        return app(LinkTreeService::class)->getTree($this->forceRefresh);
+        return app(LinkGroupRepository::class)->getTree($this->forceRefresh);
     }
 }

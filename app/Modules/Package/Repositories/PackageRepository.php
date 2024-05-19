@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Page\Repositories;
+namespace App\Modules\Package\Repositories;
 
 use App\Modules\CMSIntegration\Factories\ContextFactory;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
-use App\Modules\Page\Models\Page;
+use App\Modules\Project\Models\Project;
 
-class PageRepository extends DirectusRepository
+class PackageRepository extends DirectusRepository
 {
     public function getContext(): Context
     {
-        return ContextFactory::create(Page::class, orderBy: null);
+        return ContextFactory::create(Project::class);
     }
 }

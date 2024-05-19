@@ -30,7 +30,6 @@ class DirectusApi
             $this->handleError($response);
         }
 
-
         return $response['data'];
     }
 

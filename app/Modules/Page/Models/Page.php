@@ -40,7 +40,6 @@ class Page extends Model
         'name',
         'content',
         'status',
-        'sort',
         'slug',
         'cms_id',
         'type'

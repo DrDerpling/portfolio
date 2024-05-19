@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Modules\Skill\DataObjects;
 
-use App\Modules\Framework\AbstractDataObject;
+use App\Modules\Framework\DataObject;
 
-class SkillDataObject extends AbstractDataObject
+class SkillDataObject extends DataObject
 {
     public function getLogo(): string
     {

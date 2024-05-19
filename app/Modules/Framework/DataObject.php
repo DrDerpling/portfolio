@@ -13,7 +13,7 @@ use function json_encode;
 /**
  * @phpstan-consistent-constructor
  */
-abstract class AbstractDataObject implements JsonSerializable, Wireable
+class DataObject implements JsonSerializable, Wireable
 {
     public function __construct(
         private array $data = []
@@ -25,7 +25,7 @@ abstract class AbstractDataObject implements JsonSerializable, Wireable
         return $this->data;
     }
 
-    public function setData(array $data): AbstractDataObject
+    public function setData(array $data): DataObject
     {
         $this->data = $data;
         return $this;
@@ -36,7 +36,12 @@ abstract class AbstractDataObject implements JsonSerializable, Wireable
         return Arr::get($this->data, $name);
     }
 
-    public function set(string $name, mixed $value): AbstractDataObject
+    public function has(string $name): bool
+    {
+        return Arr::has($this->data, $name);
+    }
+
+    public function set(string $name, mixed $value): DataObject
     {
         Arr::set($this->data, $name, $value);
         return $this;
@@ -60,6 +65,11 @@ abstract class AbstractDataObject implements JsonSerializable, Wireable
     public function jsonSerialize(): array
     {
         return $this->toArray();
+    }
+
+    public function unset(string $name): void
+    {
+        Arr::forget($this->data, $name);
     }
 
     /**

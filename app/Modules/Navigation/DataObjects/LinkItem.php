@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Modules\Navigation\DataObjects;
 
-use App\Modules\Framework\AbstractDataObject;
+use App\Modules\Framework\DataObject;
 
-class LinkItem extends AbstractDataObject
+class LinkItem extends DataObject
 {
     public function getLabel(): string
     {

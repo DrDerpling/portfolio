@@ -6,13 +6,13 @@ namespace App\Modules\Navigation\Http\Controllers;
 
 use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Models\LinkItem;
+use App\Modules\Navigation\Repositories\LinkGroupRepository;
 use App\Modules\Navigation\Repositories\LinkItemRepository;
-use App\Modules\Navigation\Services\LinkTreeService;
 use App\Modules\Page\Models\Page;
-use App\Modules\Page\Services\PageService;
+use App\Modules\Page\Repositories\PageRepository;
 use App\Modules\Page\Types\PageTypes;
-use App\Modules\Project\Services\ProjectService;
-use App\Modules\Skill\Services\SkillService;
+use App\Modules\Project\Repositories\ProjectRepository;
+use App\Modules\Skill\Repositories\SkillRepository;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,18 +20,18 @@ class NavigationController extends Controller
 {
     public function __construct(
         private LinkItemRepository $itemRepository,
-        private PageService $pageService,
-        private SkillService $skillService,
-        private LinkTreeService $linkTreeService,
-        private ProjectService $projectService,
+        private PageRepository $pageRepository,
+        private SkillRepository $skillRepository,
+        private LinkGroupRepository $linkGroupRepository,
+        private ProjectRepository $projectRepository,
     ) {
     }
 
     public function handle(Request $request): View
     {
         $path = $request->path();
-        $forceNew = (bool)$request->query('force_new');
-        $links = $this->linkTreeService->getTree($forceNew);
+        $devMode = (bool)$request->query('dev_mode');
+        $links = $this->linkGroupRepository->getTree($devMode);
 
         if ($path === '/') {
             $path = PageTypes::HOME;
@@ -51,7 +51,7 @@ class NavigationController extends Controller
          * Lazy load page model
          * @var Page $page
          */
-        $page = $this->pageService->find($linkItem->page_id, $forceNew);
+        $page = $this->pageRepository->get($linkItem->page_id);
 
         switch ($page->type) {
             case PageTypes::CONTENT:
@@ -59,13 +59,13 @@ class NavigationController extends Controller
             case PageTypes::HOME:
                 return view('pages.home', ['page' => $page, 'links' => $links]);
             case PageTypes::COMPONENTS:
-                return $this->resolveComponentsPage($page, $forceNew);
+                return $this->resolveComponentsPage($page);
             default:
                 abort(404);
         }
     }
 
-    private function resolveComponentsPage(Page $page, bool $forceNew): View
+    private function resolveComponentsPage(Page $page): View
     {
         /**
          * @var LinkItem[] $history
@@ -76,15 +76,13 @@ class NavigationController extends Controller
             $history[0]->is_active = true;
         }
 
-        $projects = $this->projectService->getList($forceNew);
-
         return view(
             'pages.components',
             [
                 'page' => $page,
-                'skills' => $this->skillService->getList($forceNew),
+                'skills' => $this->skillRepository->getList()->all(),
                 'history' => $history,
-                'projects' => $projects,
+                'projects' => $this->projectRepository->getList()->all(),
             ]
         );
     }
