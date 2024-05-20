@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f1b05886f90bd79cc631292af6230ea",
+    "content-hash": "9d86941af30f77b3d24b027e18b1ab65",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1520,16 +1520,16 @@
         },
         {
             "name": "drderpling/eloquent-directus-repository",
-            "version": "v0.2.0-alpha",
+            "version": "v0.3.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DrDerpling/eloquent-directus-repository.git",
-                "reference": "16571e1d19921fac1847c1c7ccc0bd592174c22c"
+                "reference": "4163a128de72ff018baac20ac0c274388677677f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DrDerpling/eloquent-directus-repository/zipball/16571e1d19921fac1847c1c7ccc0bd592174c22c",
-                "reference": "16571e1d19921fac1847c1c7ccc0bd592174c22c",
+                "url": "https://api.github.com/repos/DrDerpling/eloquent-directus-repository/zipball/4163a128de72ff018baac20ac0c274388677677f",
+                "reference": "4163a128de72ff018baac20ac0c274388677677f",
                 "shasum": ""
             },
             "type": "library",
@@ -1549,9 +1549,9 @@
             "description": "A Laravel package to use Directus as a repository for Eloquent models.",
             "support": {
                 "issues": "https://github.com/DrDerpling/eloquent-directus-repository/issues",
-                "source": "https://github.com/DrDerpling/eloquent-directus-repository/tree/v0.2.0-alpha"
+                "source": "https://github.com/DrDerpling/eloquent-directus-repository/tree/v0.3.0-alpha"
             },
-            "time": "2024-05-20T15:06:44+00:00"
+            "time": "2024-05-20T18:38:59+00:00"
         },
         {
             "name": "egulias/email-validator",

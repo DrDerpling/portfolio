@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Frontend\Providers;
+namespace App\Frontend\Providers;
 
 use App\Modules\Skill\View\Skill;
 use Illuminate\Support\Facades\Blade;

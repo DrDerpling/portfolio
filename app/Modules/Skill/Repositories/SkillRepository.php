@@ -37,7 +37,7 @@ class SkillRepository extends DirectusRepository
         $disk = Storage::disk('public');
         $fileName = 'skills/' . Str::slug($item->get('name')) . '.webp'; // Don't really care if this overwrites
 
-        Directus::collection('assets')
+        Directus::query('assets')
             ->addQueryParameter('fit', 'inside')
             ->addQueryParameter('width', '100')
             ->addQueryParameter('height', '100')

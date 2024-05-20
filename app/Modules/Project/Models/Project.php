@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
-
+ *
+ *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Skill> $skills
  * @property-read int|null $skills_count
  * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()

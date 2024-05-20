@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules\Frontend\View\Components;
+namespace App\Frontend\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

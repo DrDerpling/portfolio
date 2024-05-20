@@ -1,4 +1,3 @@
-@php use Illuminate\Database\Eloquent\Casts\Json; @endphp
 @extends('layouts.main')
 
 @section('content')
@@ -43,4 +42,10 @@
             <x-project-slider :projects="$projects"/>
         </div>
     </div>
+
+    <div class="py-4 lg:space-x-4 lg:space-y-0 space-y-2 flex flex-col lg:flex-row">
+        <div class="w-full">
+            <h2 class="text-3xl pb-4">Packages</h2>
+            <x-package-overview :packages="$packages"/>
+        </div>
 @endsection

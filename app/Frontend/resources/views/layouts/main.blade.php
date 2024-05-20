@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dennis Portfolio</title>
-    @vite('app/Modules/Frontend/resources/css/app.css')
+    @vite('app/Frontend/resources/css/app.css')
     @livewireStyles
 </head>
     <body class="bg-primary h-screen overflow-hidden text-primary-content">
@@ -46,7 +46,7 @@
             <x-settings-modal/>
         </div>
 
-        @vite('app/Modules/Frontend/resources/js/app.js')
+        @vite('app/Frontend/resources/js/app.js')
         @livewireScripts
     </body>
 </html>

@@ -28,7 +28,9 @@ const themeColors = {
 export default {
     content: [
         "./app/Modules/**/resources/views/**/*.blade.php",
-        "./app/Modules/**/*.php"
+        "./app/Modules/**/*.php",
+        "./app/Frontend/resources/views/**/*.blade.php",
+        "./app/Modules/*.php",
     ],
     theme: {
         extend: {

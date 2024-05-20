@@ -50,7 +50,7 @@ class ProjectRepository extends DirectusRepository
         $disk = Storage::disk('public');
         $fileName = 'projects/' . Str::slug($item->get('name')) . '.webp'; // Don't really care if this overwrites
 
-        Directus::collection('assets')
+        Directus::query('assets')
             ->addQueryParameter('fit', 'cover')
             ->addQueryParameter('width', '500')
             ->addQueryParameter('height', '300')

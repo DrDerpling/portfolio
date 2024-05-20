@@ -81,7 +81,7 @@ class LinkGroupRepository extends DirectusRepository
 
         $linkItemIds = array_values($object->get('link_items'));
 
-        $items = Directus::collection('link_items')
+        $items = Directus::query('link_items')
             ->where('id', '_in', implode(',', $linkItemIds))
             ->fields('id', 'name', 'page.slug', 'page.id', 'icon.key', 'sort', 'status', 'link_group')
             ->get();

@@ -55,6 +55,8 @@ class ViewServiceProvider extends ServiceProvider
             $viewPaths[] = $viewDir;
         }
 
+        $viewPaths[] = base_path('app/Frontend/resources/views');
+
         return $viewPaths;
     }
 }

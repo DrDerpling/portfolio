@@ -8,6 +8,7 @@ use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Models\LinkItem;
 use App\Modules\Navigation\Repositories\LinkGroupRepository;
 use App\Modules\Navigation\Repositories\LinkItemRepository;
+use App\Modules\Package\Repositories\PackageRepository;
 use App\Modules\Page\Models\Page;
 use App\Modules\Page\Repositories\PageRepository;
 use App\Modules\Page\Types\PageTypes;
@@ -24,6 +25,7 @@ class NavigationController extends Controller
         private SkillRepository $skillRepository,
         private LinkGroupRepository $linkGroupRepository,
         private ProjectRepository $projectRepository,
+        private PackageRepository $packageRepository,
     ) {
     }
 
@@ -83,6 +85,7 @@ class NavigationController extends Controller
                 'skills' => $this->skillRepository->getList()->all(),
                 'history' => $history,
                 'projects' => $this->projectRepository->getList()->all(),
+                'packages' => $this->packageRepository->getList()->all(),
             ]
         );
     }
