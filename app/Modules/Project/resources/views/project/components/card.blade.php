@@ -15,7 +15,7 @@
     <div class="mt-auto p-4">
         <div class="flex flex-wrap gap-2 mb-4">
             @foreach($project->skills->take(4) as $skill)
-                <span class="bg-primary-lighter text-primary-lightest rounded-full px-3 py-1 text-sm font-semibold ">#{{ $skill->name }}</span>
+                <x-badge>#{{ $skill->name }}</x-badge>
             @endforeach
         </div>
         <div class="flex justify-between items-center">
