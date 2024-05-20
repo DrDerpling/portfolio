@@ -36,12 +36,6 @@
             "Database\\Seeders\\": "database/seeders/"
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./packages/drderpling/*"
-        }
-    ],
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
