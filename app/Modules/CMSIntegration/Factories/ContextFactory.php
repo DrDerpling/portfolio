@@ -12,7 +12,7 @@ class ContextFactory
         string $modelClass,
         array $fields = [],
         string $collectionName = '',
-        ?string $orderBy = 'sort'
+        ?string $orderBy = 'sort',
     ): Context {
         $request = request();
         $forceRefresh = (bool)$request->input('force_new', false);

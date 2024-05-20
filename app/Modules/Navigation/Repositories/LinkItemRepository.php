@@ -7,8 +7,8 @@ namespace App\Modules\Navigation\Repositories;
 use App\Modules\CMSIntegration\Factories\ContextFactory;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
-use App\Modules\Framework\DataObject;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
+use Illuminate\Support\Collection;
 
 /**
  * Class LinkItemRepository
@@ -41,21 +41,21 @@ class LinkItemRepository extends DirectusRepository
         return $item;
     }
 
-    protected function prepareData(array $data): DataObject
+    protected function prepareData(array $data): Collection
     {
         return self::buildLinkItemData($data);
     }
 
-    public static function buildLinkItemData(array $data): DataObject
+    public static function buildLinkItemData(array $data): Collection
     {
-        $object = new DataObject($data);
-        $object->set('cms_id', $object->get('id'));
-        $object->set('slug', $object->get('page.slug'));
-        $object->set('page_id', $object->get('page.id'));
-        $object->set('icon', $object->get('icon.key'));
+        $object = collect($data);
+        $object->put('cms_id', $object->get('id'));
+        $object->put('slug', $object->get('page.slug'));
+        $object->put('page_id', $object->get('page.id'));
+        $object->put('icon', $object->get('icon.key'));
 
-        $object->unset('page');
-        $object->unset('link_group');
+        $object->forget('page');
+        $object->forget('link_group');
 
         return $object;
     }

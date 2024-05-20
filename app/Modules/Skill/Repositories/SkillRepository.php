@@ -7,8 +7,8 @@ namespace App\Modules\Skill\Repositories;
 use App\Modules\CMSIntegration\Api\Directus;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
-use App\Modules\Framework\DataObject;
 use App\Modules\Skill\Models\Skill;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Str;
 
@@ -28,10 +28,10 @@ class SkillRepository extends DirectusRepository
         return new Context(Skill::class);
     }
 
-    protected function prepareData(array $data): DataObject
+    protected function prepareData(array $data): Collection
     {
-        $item = new DataObject($data);
-        $item->set('cms_id', $data['id']);
+        $item = collect($data);
+        $item->put('cms_id', $data['id']);
 
         $disk = Storage::disk('public');
         $fileName = 'skills/' . Str::slug($item->get('name')) . '.webp'; // Don't really care if this overwrites
@@ -43,9 +43,9 @@ class SkillRepository extends DirectusRepository
             ->addQueryParameter('quality', ' 100')
             ->addQueryParameter('format', 'webp')
             ->addQueryParameter('download', '1')
-            ->download($item->get('logo'), $disk, $fileName);
+            ->download($item->get('logo', ''), $disk, $fileName);
 
-        $item->set('logo', $fileName);
+        $item->put('logo', $fileName);
 
         return $item;
     }

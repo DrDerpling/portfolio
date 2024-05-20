@@ -8,11 +8,11 @@ use App\Modules\CMSIntegration\Api\Directus;
 use App\Modules\CMSIntegration\Factories\ContextFactory;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
-use App\Modules\Framework\DataObject;
 use App\Modules\Project\Models\Project;
 use App\Modules\Skill\Repositories\SkillRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection as DatabaseCollection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -23,12 +23,12 @@ class ProjectRepository extends DirectusRepository
     ) {
     }
 
-    public function updateOrCreate(DataObject $item): Model
+    public function updateOrCreate(Collection $item): Model
     {
         /** @var Project $project */
         $project = $this->getContext()->getModelClass()::updateOrCreate(
             ['cms_id' => $item->get('cms_id')],
-            $item->getData()
+            $item->toArray()
         );
 
         $skillCmsIds = array_map(static fn($skill) => $skill['id'], $item->get('skills'));
@@ -42,11 +42,11 @@ class ProjectRepository extends DirectusRepository
         return $project;
     }
 
-    protected function prepareData(array $data): DataObject
+    protected function prepareData(array $data): Collection
     {
-        $item = new DataObject($data);
+        $item = collect($data);
 
-        $item->set('cms_id', $item->get('id'));
+        $item->put('cms_id', $item->get('id'));
         $disk = Storage::disk('public');
         $fileName = 'projects/' . Str::slug($item->get('name')) . '.webp'; // Don't really care if this overwrites
 
@@ -57,9 +57,9 @@ class ProjectRepository extends DirectusRepository
             ->addQueryParameter('quality', ' 100')
             ->addQueryParameter('format', 'webp')
             ->addQueryParameter('download', '1')
-            ->download($item->get('hero'), $disk, $fileName);
+            ->download($item->get('hero', ''), $disk, $fileName);
 
-        $item->set('image', $fileName);
+        $item->put('image', $fileName);
 
         $skills = array_map(static function ($skill) {
             return [
@@ -68,7 +68,7 @@ class ProjectRepository extends DirectusRepository
             ];
         }, $item->get('skills'));
 
-        $item->set('skills', $skills);
+        $item->put('skills', $skills);
 
         return $item;
     }
@@ -76,18 +76,18 @@ class ProjectRepository extends DirectusRepository
     /**
      * Get a list of models from the database or from Directus if the database is empty.
      *
-     * @return Collection<int, Model>
+     * @return DatabaseCollection<int, Model>
      */
-    public function getList(): Collection
+    public function getList(): DatabaseCollection
     {
         if ($this->getContext()->isForceRefresh()) {
-            return new Collection($this->getFromDirectus());
+            return new DatabaseCollection($this->getFromDirectus());
         }
 
         $list = $this->getModelQuery()->with('skills')->get();
 
         if ($list->isEmpty()) {
-            return new Collection($this->getFromDirectus());
+            return new DatabaseCollection($this->getFromDirectus());
         }
 
         return $list;

@@ -9,10 +9,10 @@ use App\Modules\CMSIntegration\Enums\StatusEnum;
 use App\Modules\CMSIntegration\Factories\ContextFactory;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
-use App\Modules\Framework\DataObject;
 use App\Modules\Navigation\Models\LinkGroup as LinkGroupModel;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class LinkGroupRepository extends DirectusRepository
 {
@@ -52,20 +52,20 @@ class LinkGroupRepository extends DirectusRepository
     }
 
     /**
-     * @param DataObject $item
+     * @param Collection $item
      * @return Model
      */
-    public function updateOrCreate(DataObject $item): Model
+    public function updateOrCreate(Collection $item): Model
     {
         $cmsId = $item->get('cms_id');
 
         /** @var LinkGroupModel $linkGroup */
-        $linkGroup = $this->getModelQuery()->updateOrCreate(['cms_id' => $cmsId], $item->getData());
+        $linkGroup = $this->getModelQuery()->updateOrCreate(['cms_id' => $cmsId], $item->toArray());
 
         if ($item->has('children')) {
             foreach ($item->get('children') as $child) {
-                $child->set('parent_id', $linkGroup->id);
-                $child->set('cms_id', $child->get('id'));
+                $child->put('parent_id', $linkGroup->id);
+                $child->put('cms_id', $child->get('id'));
 
                 $this->linkItemRepository->updateOrCreate($child);
             }
@@ -74,10 +74,10 @@ class LinkGroupRepository extends DirectusRepository
         return $linkGroup;
     }
 
-    protected function prepareData(array $data): DataObject
+    protected function prepareData(array $data): \Illuminate\Support\Collection
     {
-        $object = new DataObject($data);
-        $object->set('cms_id', $data['id']);
+        $object = collect($data);
+        $object->put('cms_id', $data['id']);
 
         $linkItemIds = array_values($object->get('link_items'));
 
@@ -86,7 +86,7 @@ class LinkGroupRepository extends DirectusRepository
             ->fields('id', 'name', 'page.slug', 'page.id', 'icon.key', 'sort', 'status', 'link_group')
             ->get();
 
-        $object->set('children', array_map(static function (array $item) {
+        $object->put('children', array_map(static function (array $item) {
             return LinkItemRepository::buildLinkItemData($item);
         }, $items));
 

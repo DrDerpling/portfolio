@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Modules\CMSIntegration\Repositories;
 
 use App\Modules\CMSIntegration\Api\Directus;
-use App\Modules\Framework\DataObject;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Collection as DatabaseCollection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
 abstract class DirectusRepository
@@ -73,10 +73,10 @@ abstract class DirectusRepository
      * Abstract method to update an existing entity or create a new one based on provided data.
      * This method needs to be implemented in subclass repositories to handle model-specific details.
      *
-     * @param DataObject $item
+     * @param Collection $item
      * @return Model The updated or newly created model instance.
      */
-    public function updateOrCreate(DataObject $item): Model
+    public function updateOrCreate(Collection $item): Model
     {
         return $this->getModelQuery()->updateOrCreate(
             ['cms_id' => $item->get('cms_id')],
@@ -89,18 +89,18 @@ abstract class DirectusRepository
      * This method can be used within `updateOrCreate` or other methods requiring data manipulation.
      *
      * @param array $data The original data array.
-     * @return DataObject Object containing the prepared data and allows for easy further manipulation.
+     * @return Collection Object containing the prepared data and allows for easy further manipulation.
      */
-    protected function prepareData(array $data): DataObject
+    protected function prepareData(array $data): Collection
     {
-        $object = new DataObject($data);
-        $object->set('cms_id', $object->get('id'));
+        $object = collect($data);
+        $object->put('cms_id', $object->get('id'));
 
         return $object;
     }
 
     /**
-     * Retrieves data from Directus and updates or creates models in the database.
+     * Retrieves data from Directus and updates or creates models based on the provided context.
      *
      * @param int|null $cmdId
      * @return Model|array<array-key,Model>
@@ -137,12 +137,12 @@ abstract class DirectusRepository
     /**
      * Get a list of models from the database or from Directus if the database is empty.
      *
-     * @return Collection<Model>
+     * @return DatabaseCollection<Model>
      */
-    public function getList(): Collection
+    public function getList(): DatabaseCollection
     {
         if ($this->getContext()->isForceRefresh()) {
-            return new Collection($this->getFromDirectus());
+            return new DatabaseCollection($this->getFromDirectus());
         }
 
         $query = $this->getModelQuery();
@@ -154,7 +154,7 @@ abstract class DirectusRepository
         $list = $this->getModelQuery()->get();
 
         if ($list->isEmpty()) {
-            return new Collection($this->getFromDirectus());
+            return new DatabaseCollection($this->getFromDirectus());
         }
 
         return $list;
@@ -167,9 +167,6 @@ abstract class DirectusRepository
      */
     protected function getModelQuery(): Builder
     {
-        /** @var Builder $query */
-        $query = $this->getContext()->getModelClass()::query();
-
-        return $query;
+        return $this->getContext()->getModelClass()::query();
     }
 }
