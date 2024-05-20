@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'directus' => [
-        'base_uri' => env('DIRECTUS_BASE_URI'),
-        'token' => env('DIRECTUS_BEARER_TOKEN'),
+    'github' => [
+        'base_uri' => env('GITHUB_BASE_URI', 'https://api.github.com'),
+        'bearer_token' => env('GITHUB_BEARER_TOKEN'),
     ],
 ];
