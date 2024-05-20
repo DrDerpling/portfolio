@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a87b61e53393be7aeb0bd268c60e832",
+    "content-hash": "5818729fc3e691b46ce6021f2db1c3b3",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1520,12 +1520,19 @@
         },
         {
             "name": "drderpling/eloquent-directus-repository",
-            "version": "0.1.0",
-            "dist": {
-                "type": "path",
-                "url": "./packages/drderpling/eloquent-directus-repository",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drderpling/eloquent-directus-repository.git",
                 "reference": "9ee4fc207501c46744cd5773cf062d2d14eab881"
             },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drderpling/eloquent-directus-repository/zipball/9ee4fc207501c46744cd5773cf062d2d14eab881",
+                "reference": "9ee4fc207501c46744cd5773cf062d2d14eab881",
+                "shasum": ""
+            },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1539,10 +1546,13 @@
                     "Drderpling\\DirectusRepository\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "description": "A Laravel package to use Directus as a repository for Eloquent models.",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/drderpling/eloquent-directus-repository/issues",
+                "source": "https://github.com/drderpling/eloquent-directus-repository/tree/main"
+            },
+            "time": "2024-05-20T13:03:16+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -13364,7 +13374,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "drderpling/eloquent-directus-repository": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
