@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\Page\Repositories;
 
-use App\Modules\CMSIntegration\Factories\ContextFactory;
-use App\Modules\CMSIntegration\Repositories\Context;
-use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Page\Models\Page;
+use Drderpling\DirectusRepository\Factories\ContextFactory;
+use Drderpling\DirectusRepository\Repositories\Context;
+use Drderpling\DirectusRepository\Repositories\DirectusRepository;
 
 class PageRepository extends DirectusRepository
 {

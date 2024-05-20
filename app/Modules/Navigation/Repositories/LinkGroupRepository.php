@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Modules\Navigation\Repositories;
 
-use App\Modules\CMSIntegration\Api\Directus;
-use App\Modules\CMSIntegration\Enums\StatusEnum;
-use App\Modules\CMSIntegration\Factories\ContextFactory;
-use App\Modules\CMSIntegration\Repositories\Context;
-use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Navigation\Models\LinkGroup as LinkGroupModel;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
+use Drderpling\DirectusRepository\Api\Directus;
+use Drderpling\DirectusRepository\Enums\StatusEnum;
+use Drderpling\DirectusRepository\Factories\ContextFactory;
+use Drderpling\DirectusRepository\Repositories\Context;
+use Drderpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 

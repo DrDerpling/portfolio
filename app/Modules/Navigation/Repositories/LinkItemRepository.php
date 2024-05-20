@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Modules\Navigation\Repositories;
 
-use App\Modules\CMSIntegration\Factories\ContextFactory;
-use App\Modules\CMSIntegration\Repositories\Context;
-use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
 use Arr;
+use Drderpling\DirectusRepository\Factories\ContextFactory;
+use Drderpling\DirectusRepository\Repositories\Context;
+use Drderpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Support\Collection;
 
 /**

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Modules\Skill\Repositories;
 
-use App\Modules\CMSIntegration\Api\Directus;
-use App\Modules\CMSIntegration\Repositories\Context;
-use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Skill\Models\Skill;
+use Drderpling\DirectusRepository\Api\Directus;
+use Drderpling\DirectusRepository\Factories\ContextFactory;
+use Drderpling\DirectusRepository\Repositories\Context;
+use Drderpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -25,7 +26,7 @@ class SkillRepository extends DirectusRepository
 
     public function getContext(): Context
     {
-        return new Context(Skill::class);
+        return ContextFactory::create(Skill::class);
     }
 
     protected function prepareData(array $data): Collection

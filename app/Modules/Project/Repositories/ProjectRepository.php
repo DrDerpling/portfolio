@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Modules\Project\Repositories;
 
-use App\Modules\CMSIntegration\Api\Directus;
-use App\Modules\CMSIntegration\Factories\ContextFactory;
-use App\Modules\CMSIntegration\Repositories\Context;
-use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Project\Models\Project;
 use App\Modules\Skill\Repositories\SkillRepository;
+use Drderpling\DirectusRepository\Api\Directus;
+use Drderpling\DirectusRepository\Factories\ContextFactory;
+use Drderpling\DirectusRepository\Repositories\Context;
+use Drderpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Database\Eloquent\Collection as DatabaseCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Modules\CMSIntegration\Enums\StatusEnum;
+use Drderpling\DirectusRepository\Enums\StatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
+;
 
 return new class extends Migration
 {
