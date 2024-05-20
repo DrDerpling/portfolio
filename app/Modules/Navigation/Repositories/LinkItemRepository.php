@@ -6,9 +6,9 @@ namespace App\Modules\Navigation\Repositories;
 
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
 use Arr;
-use Drderpling\DirectusRepository\Factories\ContextFactory;
-use Drderpling\DirectusRepository\Repositories\Context;
-use Drderpling\DirectusRepository\Repositories\DirectusRepository;
+use DrDerpling\DirectusRepository\Factories\ContextFactory;
+use DrDerpling\DirectusRepository\Repositories\Context;
+use DrDerpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Support\Collection;
 
 /**

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Modules\Skill\Repositories;
 
 use App\Modules\Skill\Models\Skill;
-use Drderpling\DirectusRepository\Api\Directus;
-use Drderpling\DirectusRepository\Factories\ContextFactory;
-use Drderpling\DirectusRepository\Repositories\Context;
-use Drderpling\DirectusRepository\Repositories\DirectusRepository;
+use DrDerpling\DirectusRepository\Api\Directus;
+use DrDerpling\DirectusRepository\Factories\ContextFactory;
+use DrDerpling\DirectusRepository\Repositories\Context;
+use DrDerpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Str;

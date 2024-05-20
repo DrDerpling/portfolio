@@ -6,11 +6,11 @@ namespace App\Modules\Navigation\Repositories;
 
 use App\Modules\Navigation\Models\LinkGroup as LinkGroupModel;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
-use Drderpling\DirectusRepository\Api\Directus;
-use Drderpling\DirectusRepository\Enums\StatusEnum;
-use Drderpling\DirectusRepository\Factories\ContextFactory;
-use Drderpling\DirectusRepository\Repositories\Context;
-use Drderpling\DirectusRepository\Repositories\DirectusRepository;
+use DrDerpling\DirectusRepository\Api\Directus;
+use DrDerpling\DirectusRepository\Enums\StatusEnum;
+use DrDerpling\DirectusRepository\Factories\ContextFactory;
+use DrDerpling\DirectusRepository\Repositories\Context;
+use DrDerpling\DirectusRepository\Repositories\DirectusRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 

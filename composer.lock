@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72f037f6b843a53c3061725f421c77ec",
+    "content-hash": "4f1b05886f90bd79cc631292af6230ea",
     "packages": [
         {
             "name": "amphp/amp",
@@ -1520,38 +1520,38 @@
         },
         {
             "name": "drderpling/eloquent-directus-repository",
-            "version": "v0.1.1-alpha",
+            "version": "v0.2.0-alpha",
             "source": {
                 "type": "git",
-                "url": "https://github.com/drderpling/eloquent-directus-repository.git",
-                "reference": "3c364098972e71366a47d1e65b9c397eb6ce982a"
+                "url": "https://github.com/DrDerpling/eloquent-directus-repository.git",
+                "reference": "16571e1d19921fac1847c1c7ccc0bd592174c22c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drderpling/eloquent-directus-repository/zipball/3c364098972e71366a47d1e65b9c397eb6ce982a",
-                "reference": "3c364098972e71366a47d1e65b9c397eb6ce982a",
+                "url": "https://api.github.com/repos/DrDerpling/eloquent-directus-repository/zipball/16571e1d19921fac1847c1c7ccc0bd592174c22c",
+                "reference": "16571e1d19921fac1847c1c7ccc0bd592174c22c",
                 "shasum": ""
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Drderpling\\DirectusRepository\\DirectusServiceProvider"
+                        "DrDerpling\\DirectusRepository\\DirectusServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Drderpling\\DirectusRepository\\": "src/"
+                    "DrDerpling\\DirectusRepository\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "A Laravel package to use Directus as a repository for Eloquent models.",
             "support": {
-                "issues": "https://github.com/drderpling/eloquent-directus-repository/issues",
-                "source": "https://github.com/drderpling/eloquent-directus-repository/tree/v0.1.1-alpha"
+                "issues": "https://github.com/DrDerpling/eloquent-directus-repository/issues",
+                "source": "https://github.com/DrDerpling/eloquent-directus-repository/tree/v0.2.0-alpha"
             },
-            "time": "2024-05-20T14:11:06+00:00"
+            "time": "2024-05-20T15:06:44+00:00"
         },
         {
             "name": "egulias/email-validator",

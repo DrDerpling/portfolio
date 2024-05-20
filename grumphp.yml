@@ -4,6 +4,7 @@ grumphp:
     phpcs:
       whitelist_patterns:
         - /^app\/(.*)/
+        - /^packages\/(.*)/
       triggered_by:
         - php
         - phtml
