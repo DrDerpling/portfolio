@@ -8,6 +8,7 @@ use App\Modules\CMSIntegration\Factories\ContextFactory;
 use App\Modules\CMSIntegration\Repositories\Context;
 use App\Modules\CMSIntegration\Repositories\DirectusRepository;
 use App\Modules\Navigation\Models\LinkItem as LinkItemModel;
+use Arr;
 use Illuminate\Support\Collection;
 
 /**
@@ -49,10 +50,11 @@ class LinkItemRepository extends DirectusRepository
     public static function buildLinkItemData(array $data): Collection
     {
         $object = collect($data);
+
         $object->put('cms_id', $object->get('id'));
-        $object->put('slug', $object->get('page.slug'));
-        $object->put('page_id', $object->get('page.id'));
-        $object->put('icon', $object->get('icon.key'));
+        $object->put('slug', Arr::get($object, 'page.slug'));
+        $object->put('page_id', Arr::get($object, 'page.id'));
+        $object->put('icon', Arr::get($object, 'icon.key'));
 
         $object->forget('page');
         $object->forget('link_group');

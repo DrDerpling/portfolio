@@ -74,7 +74,7 @@ class LinkGroupRepository extends DirectusRepository
         return $linkGroup;
     }
 
-    protected function prepareData(array $data): \Illuminate\Support\Collection
+    protected function prepareData(array $data): Collection
     {
         $object = collect($data);
         $object->put('cms_id', $data['id']);
