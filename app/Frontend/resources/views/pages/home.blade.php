@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    {!!
-        $page->content
-    !!}
+    <div class="xl:pt-64">
+
+
+        <x-partials.intro/>
+    </div>
 @endsection
