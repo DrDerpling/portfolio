@@ -17,7 +17,7 @@
         <div class="flex flex-1 overflow-hidden">
 
             <!-- Sidebar -->
-            <aside class="bg-primary-darker w-64 hidden md:block flex-shrink-0">
+            <aside class="bg-primary-darker p-4 w-64 hidden md:block flex-shrink-0">
                 <x-navigation-sidebar/>
             </aside>
 

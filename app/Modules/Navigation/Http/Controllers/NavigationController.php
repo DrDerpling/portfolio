@@ -59,12 +59,35 @@ class NavigationController extends Controller
             case PageTypes::CONTENT:
                 return view('pages.content', ['page' => $page]);
             case PageTypes::HOME:
-                return view('pages.home', ['page' => $page, 'links' => $links]);
+                return $this->resolveHomePage($page);
             case PageTypes::COMPONENTS:
                 return $this->resolveComponentsPage($page);
             default:
                 abort(404);
         }
+    }
+
+    private function resolveHomePage(Page $page): View
+    {
+        /**
+         * @var LinkItem[] $history
+         */
+        $history = $this->itemRepository->getList()->take(2)->all();
+
+        if (count($history) > 0) {
+            $history[0]->is_active = true;
+        }
+
+        return view(
+            'pages.home',
+            [
+                'page' => $page,
+                'skills' => $this->skillRepository->getList()->all(),
+                'history' => $history,
+                'projects' => $this->projectRepository->getList()->all(),
+                'packages' => $this->packageRepository->getList()->all(),
+            ]
+        );
     }
 
     private function resolveComponentsPage(Page $page): View
