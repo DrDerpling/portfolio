@@ -17,12 +17,12 @@
         <div class="flex flex-1 overflow-hidden">
 
             <!-- Sidebar -->
-            <aside class="bg-primary-darker w-64 p-4 hidden md:block flex-shrink-0">
+            <aside class="bg-primary-darker w-64 hidden md:block flex-shrink-0">
                 <x-navigation-sidebar/>
             </aside>
 
             <!-- Main Content -->
-            <main class="h-content flex flex-1 p-4 overflow-y-auto">
+            <main class="h-content flex flex-1 p-2 md:p-4 overflow-y-auto">
                 <x-line-numbers line-height="24"/>
                 <div class="container pl-8 p-4 mx-auto">
                     @yield('content')

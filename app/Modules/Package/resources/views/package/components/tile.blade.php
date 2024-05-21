@@ -14,12 +14,14 @@
                 <p>{{ $formatProjectStats()  }}</p>
                 <p>Last update: {{ $lastUpdatedFormatted() }}</p>
             </div>
-            <div class="flex justify-between items-end w-full">
+            <div class="w-full sm:flex sm:items-end sm:justify-between ">
                 <div>
                     <span>{{ $downloadsFormatted() }}</span> ·
                     <span>{{ $starsFormatted() }}</span>
                 </div>
-                <x-badge>{{ $package->version }}</x-badge>
+                <div class="pt-4 sm:pt-0">
+                    <x-badge>{{ $package->version }}</x-badge>
+                </div>
             </div>
         </div>
     </div>
