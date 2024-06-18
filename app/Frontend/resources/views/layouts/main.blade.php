@@ -24,7 +24,7 @@
             <!-- Main Content -->
             <main class="h-content flex flex-1 p-2 md:p-4 overflow-y-auto">
                 <x-line-numbers line-height="24"/>
-                <div class="container pl-8 p-4 mx-auto">
+                <div class="container pl-8 p-2 lg:p-4 mx-auto">
                     @yield('content')
                 </div>
             </main>

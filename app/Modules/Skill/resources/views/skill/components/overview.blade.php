@@ -3,7 +3,7 @@
 @endphp
 
 <div class="w-full text-primary bg-primary-darker border-primary-darkest border-t flex justify-center">
-    <div class="bg-primary text-primary-content p-2 sm:p-4 lg:p-6 w-full lg:max-w-4xl mx-auto">
+    <div class="bg-primary text-primary-content sm:p-4 lg:p-6 w-full lg:max-w-4xl mx-auto">
         @foreach($groupedSkills as $group => $skills)
             <div class="mb-4">
                 <h3 class="font-semibold text-lg mb-2">{{ $group }}</h3>

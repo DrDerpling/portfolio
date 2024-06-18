@@ -6,7 +6,6 @@ namespace App\Modules\Navigation\Http\Controllers;
 
 use App\Modules\Framework\Http\Controllers\Controller;
 use App\Modules\Navigation\Models\LinkItem;
-use App\Modules\Navigation\Repositories\LinkGroupRepository;
 use App\Modules\Navigation\Repositories\LinkItemRepository;
 use App\Modules\Package\Repositories\PackageRepository;
 use App\Modules\Page\Models\Page;
@@ -23,7 +22,6 @@ class NavigationController extends Controller
         private LinkItemRepository $itemRepository,
         private PageRepository $pageRepository,
         private SkillRepository $skillRepository,
-        private LinkGroupRepository $linkGroupRepository,
         private ProjectRepository $projectRepository,
         private PackageRepository $packageRepository,
     ) {
@@ -32,8 +30,6 @@ class NavigationController extends Controller
     public function handle(Request $request): View
     {
         $path = $request->path();
-        $devMode = (bool)$request->query('dev_mode');
-        $links = $this->linkGroupRepository->getTree($devMode);
 
         if ($path === '/') {
             $path = PageTypes::HOME;

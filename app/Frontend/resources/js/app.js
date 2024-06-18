@@ -82,13 +82,12 @@ document.addEventListener('alpine:init', () => {
             }
 
             if (this.totalSlides > this.visibleSlides) {
-                this.navigation.classList.remove('hidden');
                 this.navigation.classList.add('lg:flex');
-                return;
             }
 
-            this.navigation.classList.add('hidden');
-            this.navigation.classList.remove('lg:flex');
+            if (this.totalSlides <= this.visibleSlides) {
+                this.navigation.classList.remove('lg:flex');
+            }
         },
 
         updateCarousel() {
